@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="setupToolbar" type="id" />
+    <item name="MainToolbar" type="id" />
+    <item name="blogdate" type="id" />
+</resources>

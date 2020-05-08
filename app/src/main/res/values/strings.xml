@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">RuDoYo</string>
+    <string name="your_email">Your Email...</string>
+    <string name="password">Password...</string>
+    <string name="new_user_register">New User?Register...</string>
+    <string name="login_to_doyo">Login to DoYo</string>
+    <string name="todo1">TODO</string>
+    <string name="account_settings">Account Settings...</string>
+    <string name="log_out">Log Out...</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="Reg_password">Password...</string>
+    <string name="your_regemail">Your Email...</string>
+    <string name="already_a_user_login">Already a user?Login....</string>
+    <string name="regtodo">TODO</string>
+
+    <string name="Setupbutton">Button</string>
+    <string name="your_name">Your name...</string>
+    <string name="name">Name</string>
+    <string name="your_name1">Your name...</string>
+    <string name="save_account_settings">SAVE ACCOUNT SETTINGS</string>
+    <string name="add_description">Add description</string>
+    <string name="newposttodo">TODO</string>
+    <string name="button">Post Rumour</string>
+    <string name="home">Home</string>
+    <string name="notification">Notification</string>
+    <string name="account">Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="blogpostdate">Blogpostdate</string>
+    <string name="this_is_my_first_post_on_doyo_the_world_s_largest_rumour_redressal_platform">This is my first post on doyo ,the world\'s largest rumour redressal platform</string>
+    <string name="todo2">TODO</string>
+    <string name="todoblogpost">TODO</string>
+    <string name="todo3">TODO</string>
+    <string name="_0_likes">0 Favoured</string>
+    <string name="comments">Comments:</string>
+    <string name="your_comment_here">Your Comment here...</string>
+    <string name="todo4">TODO</string>
+    <string name="your_comments_here">Your Comments here...</string>
+    <string name="_0_comments">0 Comments</string>
+    <string name="todo5">TODO</string>
+    <string name="todo" />
+    <string name="delete_post">Delete post</string>
+    <string name="_0_views">0 Favoured</string>
+    <string name="see_reviews">Comments</string>
+    <string name="post_rumours_suggestions">Post Rumours/Suggestions</string>
+    <string name="doyo_post">DoYo Post</string>
+    <string name="suggest_as_much_doctors_as_u_can">Suggest as much doctors as u can.</string>
+
+    <string name="suggest_doctor">Suggest doctor</string>
+
+    <string name="local_update">Local Update</string>
+    <string name="global_update">Global Update</string>
+    <string name="todonotify">TODO</string>
+    <string name="todonotify1">TODO</string>
+    <string name="todo54354">TODO</string>
+    <string name="todoready">TODO</string>
+    <string name="todo43">TODO</string>
+
+    <string name="about">About</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="shivani_kumari">Shivani Kumari</string>
+    <string name="sakshi_gupta">Sakshi Gupta</string>
+    <string name="kanchan_kumar">Kanchan Kumar</string>
+    <string name="aman_kumar_jha">Aman Kumar Jha</string>
+    <string name="mohit_gupta">Mohit Gupta</string>
+    <string name="doyo_team">DoYo Team</string>
+    <string name="doyo_is_a_rumour_control_platform_which_offers_users_fake_messages_verification_service_on_the_ease_of_just_posting_their_doubt_on_doyo_wall_and_getting_verified_by_intellectuals_around_them_and_the_doyo_team">DOYO is a Rumour-Control Platform which offers users Fake messages verification service on the ease of just posting their doubt on DOYO wall and getting verified by Intellectuals around them and the DOYO team.</string>
+    <string name="about_us">ABOUT US :</string>
+    <string name="driven_by_the_problem_faced_doyo_aims_to_eliminate_the_spread_of_misinformation_with_an_ask_and_review_system">Driven by the problems faced ,DOYO aims to eliminate the spread of misinformation with an Ask-and Review system.</string>
+    <string name="with_the_help_of_doyo_users_can_easily_verify_messages_interact_on_such_issues_and_can_have_access_to_other_updates_">With the help of DOYO, users can easily verify messages, interact on such issues and can have access to other updates .</string>
+    <string name="doyo_usercomment">DoYo User</string>
+    <string name="loading_comment">Loading Comment...</string>
+
+    <string name="suggest_doctor65">Suggest Doctor</string>
+    <string name="suggest_doctors_as_much_as_you_can">Suggest doctors as much as you can.</string>
+    <string name="doyo">DoYo</string>
+
+    <string name="doyo_user">DoYo User</string>
+    <string name="forgot_password12">Forgot Password ?</string>
+
+    <string name="muskan_gupta">Muskan Gupta</string>
+    <string name="sakshi_gupta1">Sakshi Gupta</string>
+    <string name="kanchan_kumar1">Kanchan kumar</string>
+    <string name="aman_kumar_jha1">Aman kumar jha</string>
+    <string name="share_and_save_lives">Share and promote!</string>
+    <string name="government_updates">Government updates.</string>
+
+    <string name="commentdelete">Delete Comment</string>
+    <string name="deletecomment">Delete</string>
+    <string name="updates">Updates</string>
+    <string name="driven_by_the_problems_faced_doyo_aims_to_eliminate_the_spread_of_misinformation_with_an_ask_and_review_system">Driven by the problems faced ,DOYO aims to eliminate the spread of misinformation with an Ask-and Review system.</string>
+    <string name="with_the_help_of_doyo_users_can_easily_verify_messages_interact_on_such_issues_and_can_have_access_to_other_updates">With the help of DOYO, users can easily verify messages, interact on such issues and can have access to other updates .</string>
+    <string name="_0_confused">0 Confused</string>
+    <string name="_0_unfavoured">0 Unfavoured</string>
+    <string name="todo65">TODO</string>
+    <string name="todoui">TODO</string>
+    <string name="_0_truth_probability">0 % Truth Probability</string>
+    <string name="_0_confused1">0 Confused</string>
+</resources>

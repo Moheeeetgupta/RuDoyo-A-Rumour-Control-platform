@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1069515941477",
+    "firebase_url": "https://rumoursindoyo.firebaseio.com",
+    "project_id": "rumoursindoyo",
+    "storage_bucket": "rumoursindoyo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069515941477:android:0cd2eec0d75fa88a29488c",
+        "android_client_info": {
+          "package_name": "com.rumooursindoyo.moheeeetgupta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069515941477-n210btvdtmjsuegt5ue78tejhpmij7d9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvV7010zAwgLBqjvqiNCO8I_EYcfzzRTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069515941477-n210btvdtmjsuegt5ue78tejhpmij7d9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
