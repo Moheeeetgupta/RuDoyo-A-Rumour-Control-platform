@@ -137,7 +137,7 @@ public void showRecoverPaswword() {
         });
 
     }
-
+//whenever the app starts ,it  should first verify the real user
     @Override
     protected void onStart() {
         super.onStart();
