@@ -200,7 +200,10 @@ public class HomeFragment extends Fragment {
 
                                             blogRecyclerAdapter.notifyDataSetChanged();
 
-                                        }}
+                                        }
+                                       }else {
+
+                                       }
                                     }
                                 });
 

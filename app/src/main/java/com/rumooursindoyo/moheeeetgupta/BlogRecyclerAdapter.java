@@ -2,6 +2,7 @@ package com.rumooursindoyo.moheeeetgupta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -9,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -48,6 +51,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     private FirebaseAuth firebaseAuth;
    public Object DocumentSnapshot;
     private Object QuerySnapshot;
+    private boolean flagLike=false,flagDislike=false,flagNeutral=false;
 
 
 
@@ -144,12 +148,20 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot,@Nullable FirebaseFirestoreException e) {
                 if(documentSnapshot!=null) {
                     if (documentSnapshot.exists ()) {
-
-                        holder.blogLikeBtn.setImageDrawable (context.getDrawable (R.drawable.favoured_icon_green));
+                        ImageView imageView=(ImageView) holder.blogLikeBtn.getChildAt (0);
+                        imageView.setImageDrawable (context.getDrawable (R.drawable.upvote_blue24dp));
+                        TextView textView=(TextView)holder.blogLikeBtn.getChildAt (1);
+                        int colorId= ContextCompat.getColor (context,R.color.colorPrimary);
+                        textView.setTextColor (colorId);
+                        textView.setTextSize(14);
 
                     } else {
+                        ImageView imageView=(ImageView) holder.blogLikeBtn.getChildAt (0);
+                        imageView.setImageDrawable (context.getDrawable (R.drawable.upvote_black24dp));
+                        TextView textView=(TextView)holder.blogLikeBtn.getChildAt (1);
+                        textView.setTextColor (Color.BLACK);
+                        textView.setTextSize(12);
 
-                        holder.blogLikeBtn.setImageDrawable (context.getDrawable (R.drawable.favoured_icon_gray));
 
                     }
                 }
@@ -157,6 +169,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         });
         //Likes Feature
+
         holder.blogLikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,16 +179,22 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                         if(!task.getResult().exists()){
-
+                            if(flagNeutral==true){
+                                firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).delete();
+                                flagNeutral=false;
+                            }else if(flagDislike==true){
+                                firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).delete();
+                                flagDislike=false;
+                            }
                             Map<String, Object> likesMap = new HashMap<>();
                             likesMap.put("timestamp", FieldValue.serverTimestamp());
 
                             firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).set(likesMap);
-
+                            flagLike=true;
                         } else {
 
                             firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).delete();
-
+                            flagLike=false;
                         }
 
                     }
@@ -217,12 +236,19 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot,@Nullable FirebaseFirestoreException e) {
                 if(documentSnapshot!=null) {
                     if (documentSnapshot.exists ()) {
-
-                        holder.unfavouredbtn.setImageDrawable (context.getDrawable (R.drawable.unfavoured_icon_red));
-
+                        ImageView imageView=(ImageView) holder.unfavouredbtn.getChildAt (0);
+                        imageView.setImageDrawable (context.getDrawable (R.drawable.downvote_blue24dp));
+                        TextView textView=(TextView)holder.unfavouredbtn.getChildAt (1);
+                        int colorId= ContextCompat.getColor (context,R.color.colorPrimary);
+                        textView.setTextColor (colorId);
+                        textView.setTextSize(14);
                     } else {
 
-                        holder.unfavouredbtn.setImageDrawable (context.getDrawable (R.drawable.unfavoured_icon_gray));
+                        ImageView imageView=(ImageView) holder.unfavouredbtn.getChildAt (0);
+                        imageView.setImageDrawable (context.getDrawable (R.drawable.downvote_black24dp));
+                        TextView textView=(TextView)holder.unfavouredbtn.getChildAt (1);
+                        textView.setTextColor (Color.BLACK);
+                        textView.setTextSize(12);
 
                     }
                 }
@@ -239,16 +265,22 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                         if(!task.getResult().exists()){
-
+                            if(flagNeutral==true){
+                                firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).delete();
+                                flagNeutral=false;
+                            }else if(flagLike==true){
+                                firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).delete();
+                                flagLike=false;
+                            }
                             Map<String, Object> likesMap = new HashMap<>();
                             likesMap.put("timestamp", FieldValue.serverTimestamp());
 
                             firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).set(likesMap);
-
+                            flagDislike=true;
                         } else {
 
                             firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).delete();
-
+                            flagDislike=false;
                         }
 
                     }
@@ -278,26 +310,34 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 }
             }
         });
-        //Get unfavours
+        //Get confused
         firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot,@Nullable FirebaseFirestoreException e) {
                 if(documentSnapshot!=null) {
                     if (documentSnapshot.exists ()) {
+                        ImageView imageView=(ImageView) holder.confusedbtn.getChildAt (0);
+                        imageView.setImageDrawable (context.getDrawable (R.drawable.neutral_blue24dp));
+                        TextView textView=(TextView)holder.confusedbtn.getChildAt (1);
+                        int colorId= ContextCompat.getColor (context,R.color.colorPrimary);
+                        textView.setTextColor (colorId);
+                        textView.setTextSize(14);
 
-                        holder.confusedbtn.setImageDrawable (context.getDrawable (R.drawable.confused_icon_yellow));
 
                     } else {
-
-                        holder.confusedbtn.setImageDrawable (context.getDrawable (R.drawable.confused_icon_gray));
+                        ImageView imageView=(ImageView) holder.confusedbtn.getChildAt (0);
+                        imageView.setImageDrawable (context.getDrawable (R.drawable.neutral_black24dp));
+                        TextView textView=(TextView)holder.confusedbtn.getChildAt (1);
+                        textView.setTextColor (Color.BLACK);
+                        textView.setTextSize(12);
 
                     }
                 }
             }
 
         });
-        //Unfavoured Feature
+        //confused Feature
         holder.confusedbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -307,16 +347,22 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                         if(!task.getResult().exists()){
-
+                            if(flagLike==true){
+                                firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).delete();
+                                flagLike=false;
+                            }else if(flagDislike==true){
+                                firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).delete();
+                                flagDislike=false;
+                            }
                             Map<String, Object> likesMap = new HashMap<>();
                             likesMap.put("timestamp", FieldValue.serverTimestamp());
 
                             firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).set(likesMap);
-
+                            flagNeutral=true;
                         } else {
 
                             firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).delete();
-
+                            flagNeutral=false;
                         }
 
                     }
@@ -373,15 +419,15 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         private TextView blogUserName;
         private CircleImageView blogUserImage;
 
-        private ImageView blogLikeBtn;
+        private LinearLayout blogLikeBtn;
         private TextView blogLikeCount;
 
-        private ImageView blogCommentBtn;
+        private LinearLayout blogCommentBtn;
         private TextView blogCommentsCount;
         private Button blogDeletebtn;
-        private ImageView unfavouredbtn;
+        private LinearLayout unfavouredbtn;
         private TextView blogunfavouredCount;
-        private ImageView confusedbtn;
+        private LinearLayout confusedbtn;
         private TextView confusedcount;
 
 
@@ -444,7 +490,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         public  void updateLikesCount(int count) {
 
             blogLikeCount = mView.findViewById (R.id.blog_like_count);
-            blogLikeCount.setText (count + " Favoured");
+            blogLikeCount.setText (count + " UpVotes");
 
 
         }
@@ -452,7 +498,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         public void updateunfavouredCount(int countunfavoured) {
             blogunfavouredCount = mView.findViewById (R.id.unfavoured_count);
-            blogunfavouredCount.setText (countunfavoured + " Unfavoured");
+            blogunfavouredCount.setText (countunfavoured + " DownVotes");
 
         }
 
@@ -460,7 +506,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         public void updateconfusedCount(int countconfused) {
             confusedcount=mView.findViewById (R.id.confused_count);
-            confusedcount.setText (countconfused+" Confused");
+            confusedcount.setText (countconfused+" Neutral");
 
         }
 

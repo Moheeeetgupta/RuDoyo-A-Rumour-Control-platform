@@ -39,12 +39,12 @@
     <string name="your_comment_here">Your Comment here...</string>
     <string name="todo4">TODO</string>
     <string name="your_comments_here">Your Comments here...</string>
-    <string name="_0_comments">0 Comments</string>
+    <string name="_0_comments">0 Reviews</string>
     <string name="todo5">TODO</string>
     <string name="todo" />
     <string name="delete_post">Delete post</string>
-    <string name="_0_views">0 Favoured</string>
-    <string name="see_reviews">Comments</string>
+    <string name="_0_views">0 UpVotes</string>
+    <string name="see_reviews">Reviews</string>
     <string name="post_rumours_suggestions">Post Rumours/Suggestions</string>
     <string name="doyo_post">DoYo Post</string>
     <string name="suggest_as_much_doctors_as_u_can">Suggest as much doctors as u can.</string>
@@ -93,10 +93,10 @@
     <string name="updates">Updates</string>
     <string name="driven_by_the_problems_faced_doyo_aims_to_eliminate_the_spread_of_misinformation_with_an_ask_and_review_system">Driven by the problems faced ,DOYO aims to eliminate the spread of misinformation with an Ask-and Review system.</string>
     <string name="with_the_help_of_doyo_users_can_easily_verify_messages_interact_on_such_issues_and_can_have_access_to_other_updates">With the help of DOYO, users can easily verify messages, interact on such issues and can have access to other updates .</string>
-    <string name="_0_confused">0 Confused</string>
-    <string name="_0_unfavoured">0 Unfavoured</string>
+    <string name="_0_confused">0 Neutral</string>
+    <string name="_0_unfavoured">0 DownVotes</string>
     <string name="todo65">TODO</string>
     <string name="todoui">TODO</string>
     <string name="_0_truth_probability">0 % Truth Probability</string>
-    <string name="_0_confused1">0 Confused</string>
+    <string name="_0_confused1">0 Neutral</string>
 </resources>

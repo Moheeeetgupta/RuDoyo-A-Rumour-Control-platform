@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        getSupportActionBar().setTitle("DoYo Blog");
+        getSupportActionBar().setTitle("RuDoYo");
 
         if(mAuth.getCurrentUser() != null) {
 
@@ -173,13 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_logout_btn:
                 logOut();
-                return true;
-
-            case R.id.action_setting_btn:
-
-                Intent settingsIntent = new Intent(MainActivity.this, SetupAcivity.class);
-                startActivity(settingsIntent);
-
                 return true;
 
 

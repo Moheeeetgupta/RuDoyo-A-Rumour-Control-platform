@@ -2,6 +2,7 @@ package com.rumooursindoyo.moheeeetgupta;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -102,7 +103,7 @@ public class NewPostActivity extends AppCompatActivity {
                     Toast.makeText (NewPostActivity.this, "Description and image of the rumour is compulsory", Toast.LENGTH_SHORT).show ();
                 }else{
                 if(!TextUtils.isEmpty(desc) && postImageUri != null){
-
+                    finish ();
                     newPostProgress.setVisibility(View.VISIBLE);
 
                     final String randomName = UUID.randomUUID().toString();
@@ -157,6 +158,7 @@ public class NewPostActivity extends AppCompatActivity {
                                         .child(randomName + ".jpg").putBytes(thumbData);
 
                                 uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
@@ -169,6 +171,8 @@ public class NewPostActivity extends AppCompatActivity {
                                         postMap.put("user_id", current_user_id);
                                         postMap.put("timestamp", FieldValue.serverTimestamp());
 
+
+
                                         firebaseFirestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -176,8 +180,8 @@ public class NewPostActivity extends AppCompatActivity {
                                                 if(task.isSuccessful()){
 
                                                     Toast.makeText(NewPostActivity.this, "Post was uploaded", Toast.LENGTH_LONG).show();
-                                                    Intent mainIntent = new Intent(NewPostActivity.this, MainActivity.class);
-                                                    startActivity(mainIntent);
+                                                    MediaPlayer mediaPlayer = MediaPlayer.create (NewPostActivity.this,R.raw.rumourvoice);
+                                                    mediaPlayer.start();
                                                     finish();
 
                                                 } else {
@@ -189,6 +193,7 @@ public class NewPostActivity extends AppCompatActivity {
 
                                             }
                                         });
+
 
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
