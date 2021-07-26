@@ -1,119 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="200dp"
-    android:background="#fcfcfc"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".NotificationFragment">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/view_text"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingBottom="50dp"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
     <LinearLayout
+        android:id="@+id/idLLsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:clipToPadding="false"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Local"
-            android:layout_width="160dp"
-            android:layout_height="180dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+        <!--edit text for getting the search
+                query for book from user-->
 
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/circlepurple"
-                    android:contentDescription="@string/todonotify1"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/ic_system_update_alt_black_24dp" />
+        <EditText
+            android:id="@+id/ytid"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="#FBC02D"
+            android:hint="enter youtube video link"
+            android:textColor="#000000"
+            android:textSize="25dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/suggest_doctor65"
-                    android:textStyle="bold" />
+        <Button
+            android:id="@+id/search"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="173dp"
+            android:layout_marginBottom="307dp"
+            android:text="search"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="173dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:text="@string/suggest_doctors_as_much_as_you_can"
-                    android:textColor="@android:color/black" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/global"
-            android:layout_width="160dp"
-            android:layout_height="180dp"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="77dp"
-                    android:background="@android:color/white"
-                    android:contentDescription="@string/todoready"
-                    android:padding="10dp"
-                    app:srcCompat="@mipmap/doyofinal_app_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/doyo"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:text="@string/share_and_save_lives"
-                    android:textColor="@android:color/black" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
+    <!--recycler view for displaying our list of books-->
+    <ListView
+        android:id="@+id/superListView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"/>
 
-</LinearLayout>
+
+</RelativeLayout>

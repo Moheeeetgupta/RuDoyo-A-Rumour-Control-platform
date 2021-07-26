@@ -76,17 +76,21 @@ public class MainActivity extends AppCompatActivity {
 
                         case R.id.bottom_action_home:
 
+                            addPostBtn.show();
                             replaceFragment(homeFragment, currentFragment);
                             return true;
 
                         case R.id.bottom_action_account:
 
+                            addPostBtn.hide();
                             replaceFragment(accountFragment, currentFragment);
                             return true;
 
                         case R.id.bottom_action_notif:
 
+                            addPostBtn.hide();
                             replaceFragment(notificationFragment, currentFragment);
+
                             return true;
 
                         default:
