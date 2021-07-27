@@ -26,7 +26,7 @@
             android:layout_weight="1"
 
             android:paddingEnd="60dp"
-            android:src="@drawable/arrow_backk"
+            app:srcCompat="@drawable/arrow_backk"
             android:paddingRight="60dp" />
 
         <TextView
@@ -74,7 +74,7 @@
                 android:textColorHint="#1673DD">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_email"
+                    android:id="@+id/Reg_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FF70A8F8"
@@ -117,7 +117,7 @@
                 app:passwordToggleTint="#1673DD">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_passwords"
+                    android:id="@+id/Reg_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FF70A8F8"
@@ -160,7 +160,7 @@
                 app:passwordToggleTint="#1673DD">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_cnfpasswords"
+                    android:id="@+id/Reg_cnfirm_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FF70A8F8"
@@ -177,9 +177,8 @@
 
         </androidx.cardview.widget.CardView>
 
-
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/Login_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -195,6 +194,9 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
 
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -206,7 +208,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/Login_Btn" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

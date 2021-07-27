@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,10 +27,10 @@ public class loginactivity extends AppCompatActivity {
     private EditText loginEmailText;
     private EditText loginPassText;
     private Button loginBtn;
-    private Button loginRegBtn;
+    private TextView loginRegBtn;
     private FirebaseAuth mAuth;
-    private ProgressBar loginProg;
-    private Button forgotbtn;
+   // private ProgressBar loginProg;
+    private TextView forgotbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,9 @@ public class loginactivity extends AppCompatActivity {
         loginEmailText = (EditText) findViewById(R.id.Log_Email);
         loginPassText =  (EditText) findViewById(R.id.Login_pass);
         loginBtn =(Button)findViewById(R.id.Login_Btn);
-        loginRegBtn =(Button)findViewById(R.id.Login_Reg_Btn);
-        loginProg= (ProgressBar) findViewById(R.id.Regprogress);
-        forgotbtn =(Button)findViewById (R.id.btn_forgot_password);
+        loginRegBtn =findViewById(R.id.Login_Reg_Btn);
+       // loginProg= (ProgressBar) findViewById(R.id.Regprogress);
+        forgotbtn =findViewById (R.id.btn_forgot_password);
         forgotbtn.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -65,7 +66,7 @@ public class loginactivity extends AppCompatActivity {
                 String loginPass = loginPassText.getText().toString();
                 if(!TextUtils.isEmpty(loginEmail) && !TextUtils.isEmpty(loginPass))
                 {
-                    loginProg.setVisibility(View.VISIBLE);
+                   // loginProg.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(loginEmail,loginPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                                                                          @Override
                                                                                                          public void onComplete(@NonNull Task<AuthResult> task) {
@@ -75,7 +76,7 @@ public class loginactivity extends AppCompatActivity {
                                                                                                                  String errorMessage = task.getException().getMessage();
                                                                                                                  Toast.makeText(loginactivity.this, "Error :" + errorMessage, Toast.LENGTH_SHORT).show();
                                                                                                              }
-                                                                                                             loginProg.setVisibility(View.INVISIBLE);
+                                                                                                        //     loginProg.setVisibility(View.INVISIBLE);
                                                                                                          }
                                                                                                      }
                     );

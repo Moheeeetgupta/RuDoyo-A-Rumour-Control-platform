@@ -6,38 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".SetupAcivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setup_image"
         android:layout_width="407dp"
         android:layout_height="199dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/default_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Setup_name"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="25dp"
         android:autofillHints=""
+        android:backgroundTint="#1673DD"
         android:ems="10"
         android:hint="@string/your_name"
         android:inputType="textPersonName"
         android:padding="15dp"
+        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,30 +39,33 @@
 
     <Button
         android:id="@+id/Setup_button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@color/colorAccent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/skybtn"
         android:padding="15dp"
         android:text="@string/save_account_settings"
         android:textAllCaps="false"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Setup_name" />
+
 
     <ProgressBar
         android:id="@+id/setup_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:indeterminate="true"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

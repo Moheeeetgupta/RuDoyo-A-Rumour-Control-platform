@@ -56,6 +56,6 @@ tools:context=".MainActivity">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

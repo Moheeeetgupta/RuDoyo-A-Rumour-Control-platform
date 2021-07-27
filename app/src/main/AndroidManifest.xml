@@ -24,6 +24,7 @@
             android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
         <activity
             android:name="com.rumooursindoyo.moheeeetgupta.NewPostActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
         <activity android:name="com.rumooursindoyo.moheeeetgupta.RegisterActivity" />
         <activity android:name="com.rumooursindoyo.moheeeetgupta.loginactivity" />
