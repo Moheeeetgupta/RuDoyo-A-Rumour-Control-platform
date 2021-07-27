@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.rumooursindoyo.moheeeetgupta"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 5
         versionName "1.1.3"
@@ -21,6 +21,33 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    flavorDimensions "tfliteInference"
+    productFlavors {
+        // The TFLite inference is built using the TFLite Java interpreter.
+        interpreter {
+            dimension "tfliteInference"
+        }
+        // Default: The TFLite inference is built using the TFLite Task library (high-level API).
+        taskApi {
+            getIsDefault().set(true)
+            dimension "tfliteInference"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -52,4 +79,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
     implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+
+
+    taskApiImplementation project(":lib_task_api")
+    implementation 'org.jetbrains:annotations:15.0'
+
+    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation 'org.robolectric:robolectric:4.3'
 }
