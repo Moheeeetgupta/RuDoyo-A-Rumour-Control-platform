@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -48,7 +49,7 @@
         android:layout_marginTop="110dp"
         android:background="@drawable/left_roundedd"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.cardview.widget.CardView
@@ -194,10 +195,8 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
 
-
-
-
         <TextView
+            android:id="@+id/Login_Reg_Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
