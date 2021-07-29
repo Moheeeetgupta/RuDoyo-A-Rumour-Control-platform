@@ -51,6 +51,7 @@ tools:context=".MainActivity">
         android:background="@color/colorAccent"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/mainBottomNav"
         app:layout_constraintEnd_toEndOf="parent"

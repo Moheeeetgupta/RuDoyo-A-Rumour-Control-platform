@@ -15,6 +15,7 @@
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#1673DD</color>
     <color name="Texts">#FF000000</color>
+    <color name="error_color">#ffffff</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>
