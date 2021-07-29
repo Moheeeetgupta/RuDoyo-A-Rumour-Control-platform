@@ -9,29 +9,29 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/doyofinal_app_icon"
         android:label="@string/app_name"
-        android:largeHeap="true"
+        android:roundIcon="@mipmap/doyofinal_app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity"
-            android:label="RuDoYo" />
-        <activity android:name=".Local_Activity" />
-        <activity android:name=".global" />
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.Local_Activity"></activity>
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.global" />
         <activity
-            android:name=".Comments_Activity"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.rumooursindoyo.moheeeetgupta.Comments_Activity"
+            android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
         <activity
-            android:name=".NewPostActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".loginactivity" />
+            android:name="com.rumooursindoyo.moheeeetgupta.NewPostActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.RegisterActivity" />
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.loginactivity" />
         <activity
-            android:name=".SplashScreen">
+            android:name="com.rumooursindoyo.moheeeetgupta.MainActivity"
+            android:label="RuDoYo">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +41,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".SetupAcivity" />
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.SetupAcivity" />
 
         <meta-data
             android:name="preloaded_fonts"
