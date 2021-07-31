@@ -18,6 +18,8 @@
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.Local_Activity"></activity>
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.global" />
         <activity
             android:name="com.rumooursindoyo.moheeeetgupta.Comments_Activity"
             android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />

@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
 
+    public static int check_login = 0;
+
+
     private String current_user_id;
 
     private FloatingActionButton addPostBtn;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -195,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth.signOut();
         sendToLogin();
+        check_login = 0;
     }
 
     private void sendToLogin() {
@@ -202,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(MainActivity.this, loginactivity.class);
         startActivity(loginIntent);
         finish();
+        check_login = 1;
 
     }
 

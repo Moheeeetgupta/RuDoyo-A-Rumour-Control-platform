@@ -1,6 +1,7 @@
 package com.rumooursindoyo.moheeeetgupta;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -105,6 +106,11 @@ public class Comments_Activity extends AppCompatActivity {
 
                 String comment_message = comment_field.getText().toString();
 
+
+                if (comment_message.isEmpty()) {
+                    comment_field.setError( "Please enter comment" );
+                    return;
+                }
 
                 Map<String, Object> commentsMap = new HashMap<>();
                 commentsMap.put("message", comment_message);
