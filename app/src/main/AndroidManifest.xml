@@ -19,6 +19,8 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.rumooursindoyo.moheeeetgupta.Local_Activity"></activity>
         <activity android:name="com.rumooursindoyo.moheeeetgupta.global" />
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.MainActivity"
+            android:label="RuDoYo"/>
         <activity
             android:name="com.rumooursindoyo.moheeeetgupta.Comments_Activity"
             android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
@@ -29,8 +31,7 @@
         <activity android:name="com.rumooursindoyo.moheeeetgupta.RegisterActivity" />
         <activity android:name="com.rumooursindoyo.moheeeetgupta.loginactivity" />
         <activity
-            android:name="com.rumooursindoyo.moheeeetgupta.MainActivity"
-            android:label="RuDoYo">
+            android:name=".SplashScreen">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
