@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.rumooursindoyo.moheeeetgupta">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,19 +19,19 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.rumooursindoyo.moheeeetgupta.Local_Activity"></activity>
         <activity android:name="com.rumooursindoyo.moheeeetgupta.global" />
+        <activity android:name="com.rumooursindoyo.moheeeetgupta.MainActivity"
+            android:label="RuDoYo"/>
         <activity
             android:name="com.rumooursindoyo.moheeeetgupta.Comments_Activity"
             android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
         <activity
             android:name="com.rumooursindoyo.moheeeetgupta.NewPostActivity"
-
-            android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity"
-            tools:targetApi="jelly_bean" />
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:parentActivityName="com.rumooursindoyo.moheeeetgupta.MainActivity" />
         <activity android:name="com.rumooursindoyo.moheeeetgupta.RegisterActivity" />
         <activity android:name="com.rumooursindoyo.moheeeetgupta.loginactivity" />
         <activity
-            android:name="com.rumooursindoyo.moheeeetgupta.MainActivity"
-            android:label="RuDoYo">
+            android:name=".SplashScreen">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +41,7 @@
         </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-             />
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name="com.rumooursindoyo.moheeeetgupta.SetupAcivity" />
 
         <meta-data
