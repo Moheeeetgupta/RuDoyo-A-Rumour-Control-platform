@@ -17,6 +17,7 @@
 package org.tensorflow.lite.examples.textclassification.client;
 
 /** An immutable result returned by a TextClassifier describing what was classified. */
+
 public class Result implements Comparable<Result> {
   /**
    * A unique identifier for what has been classified. Specific to the class, not the instance of
