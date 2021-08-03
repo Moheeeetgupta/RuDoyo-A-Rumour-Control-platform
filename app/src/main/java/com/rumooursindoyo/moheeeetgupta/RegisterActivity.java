@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         reg_confirm_pass_field= findViewById(R.id.Reg_cnfirm_pass);
         reg_btn = findViewById(R.id.Login_Btn);
         reg_login_btn= findViewById(R.id.Login_Reg_Btn);
-//        reg_progress= findViewById(R.id.Regprogress);
+        reg_progress= findViewById(R.id.Regprogress);
         reg_login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

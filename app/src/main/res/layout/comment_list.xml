@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:src="@mipmap/doyofinal_app_icon_foreground"
+        android:src="@mipmap/rudoyo__icon_foreground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

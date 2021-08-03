@@ -71,13 +71,16 @@ public class NewPostActivity extends AppCompatActivity {
 
         current_user_id = firebaseAuth.getCurrentUser().getUid();
 
-        newPostToolbar = findViewById(R.id.new_post__toolbar);
+        // remove
+        // newPostToolbar = findViewById(R.id.new_post__toolbar);
 
 
         newPostImage = findViewById(R.id.new_post_image);
         newPostDesc = findViewById(R.id.new_post_desc);
         newPostBtn = findViewById(R.id.post_btn);
-        newPostProgress = findViewById(R.id.new_post_progress);
+
+        // remove
+       newPostProgress = findViewById(R.id.new_post_progress);
 
         newPostImage.setOnClickListener(new View.OnClickListener() {
             @Override

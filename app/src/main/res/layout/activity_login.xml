@@ -13,28 +13,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_check_circle_black_24dp" />
+        android:background="@mipmap/rudoyo__icon"
+        app:srcCompat="@mipmap/rudoyo__icon_round" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="43dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginTop="160dp"
         android:background="@drawable/left_roundedd"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
-
 
 
         <TextView
@@ -77,17 +75,17 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Log_Email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:backgroundTint="#FF70A8F8"
                     android:drawableStart="@drawable/ic_email_black_24dp"
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="10dp"
                     android:ems="13"
-                    android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                     android:fontFamily="@font/poppins_light"
                     android:hint="Email Id"
                     android:inputType="textEmailAddress"
-                    android:textColor="#1673DD" />
+                    android:textColor="#1673DD"
+                    android:textCursorDrawable="@drawable/custom_edit_text_cursor" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -129,9 +127,9 @@
                     android:ems="13"
                     android:fontFamily="@font/poppins_light"
                     android:hint="Password"
-                    android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                     android:inputType="textPassword"
-                    android:textColor="#1673DD" />
+                    android:textColor="#1673DD"
+                    android:textCursorDrawable="@drawable/custom_edit_text_cursor" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -148,6 +146,9 @@
             android:layout_marginRight="25dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Forgot Password ?"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:textColor="#1673DD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -184,11 +185,36 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Dont't have any account ? Sign Up"
             android:textColor="#1673DD"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Login_Btn" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ProgressBar
+                android:id="@+id/login_progress"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_circle"
+                android:visibility="invisible"
+                android:indeterminateDrawable="@drawable/mydialog"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

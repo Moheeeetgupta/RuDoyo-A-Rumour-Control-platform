@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1673DD</color>
-    <color name="colorPrimaryDark">#1A371C</color>
+    <color name="colorPrimaryDark">#1673DD</color>
     <color name="colorAccent">#1673DD</color>
-    <color name="likeBtnGray">#747474</color>
+    <color name="likeBtnGray">#1673DD</color>
     <color name="likeBtnAccent">#1673DD</color>
     <color name="backgroundcolor">#fcfcfc</color>
     <color name="lightgray">#ededed</color>
@@ -14,6 +14,11 @@
     <color name="darkblue">#23283a</color>
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#1673DD</color>
+
+    <color name="color_preloader_start">#000000</color>
+    <color name="color_preloader_center">#000000</color>
+    <color name="color_preloader_end">#ff56a9c7</color>
+
     <color name="Texts">#FF000000</color>
     <color name="error_color">#ffffff</color>
 
