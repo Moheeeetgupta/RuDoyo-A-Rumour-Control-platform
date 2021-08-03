@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#1673DD"
     android:orientation="vertical"
+    android:id="@+id/main_layout"
     tools:context=".MainActivity">
 
     <ImageView
@@ -192,32 +193,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Login_Btn" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_progress"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ProgressBar
-                android:id="@+id/login_progress"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/white_circle"
-                android:visibility="invisible"
-                android:indeterminateDrawable="@drawable/mydialog"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

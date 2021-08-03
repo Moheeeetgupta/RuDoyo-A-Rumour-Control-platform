@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->C:\Users\LENOVO\Desktop\Android portfolio\DoYo\lib_task_api\src\main\AndroidManifest.xml
+8-->C:\Users\SHIVANI\Downloads\RuDoyo-A-Rumour-Control-platform\lib_task_api\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="30" />
-9-->C:\Users\LENOVO\Desktop\Android portfolio\DoYo\lib_task_api\src\main\AndroidManifest.xml
+9-->C:\Users\SHIVANI\Downloads\RuDoyo-A-Rumour-Control-platform\lib_task_api\src\main\AndroidManifest.xml
 10
 11</manifest>

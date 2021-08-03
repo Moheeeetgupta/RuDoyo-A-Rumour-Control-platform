@@ -27,48 +27,66 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mainToolbar;
+    // instance of firebase auth for authentication purpose
     private FirebaseAuth mAuth;
+
+    // instance of FirebaseFirestore used to store and sync data for client and server-side development.
     private FirebaseFirestore firebaseFirestore;
 
+    /**
+    This variable is used in splashScreen activity to check whether
+     the user is login or not if user is login then after showing splashScreen HomeFragmet will be shown and if user is logout
+     then after showing splashScreen loginactivity will be shown
+     */
     public static int check_login = 0;
 
 
     private String current_user_id;
 
+    // FloatingActionButton button for adding new posts
     private FloatingActionButton addPostBtn;
 
     private BottomNavigationView mainbottomNav;
 
     private HomeFragment homeFragment;
+
+    // fragment used for prediction of truth probability of any youtube video
     private NotificationFragment notificationFragment;
+
+    // fragment used for managing personal account section of user after registration
     private AccountFragment accountFragment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // no need , check it
         setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // obtaining an instance of this class by calling getInstance() method, like initialising mAuth variable.
         mAuth = FirebaseAuth.getInstance();
+
+
+        // obtaining an instance of this class by calling getInstance() method, like initialising firebaseFirestore variable.
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         mainToolbar = (Toolbar) findViewById(R.id.MainToolbar);
         setSupportActionBar(mainToolbar);
 
-
-
+        // setting title to actionbar of mainactivity
         getSupportActionBar().setTitle("RuDoYo");
 
+        // if current user exists
         if(mAuth.getCurrentUser() != null) {
+
 
             mainbottomNav = findViewById(R.id.mainBottomNav);
 
 
             // FRAGMENTS
-            homeFragment = new HomeFragment();
+            homeFragment = new HomeFragment();   // fragment which shows list of posts
             notificationFragment = new NotificationFragment();
             accountFragment = new AccountFragment();
 

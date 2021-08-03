@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:hint="Enter youtube video link"
         android:inputType="textNoSuggestions"
+        android:minHeight="48dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent" />

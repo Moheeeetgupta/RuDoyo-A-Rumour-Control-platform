@@ -7,8 +7,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText reg_pass_field;
     private EditText reg_confirm_pass_field;
     private Button reg_btn;
+    ViewGroup progressView_reg;
+    protected boolean isProgressShowing_reg = false;
+    private LinearLayout linearLayout;
     private TextView reg_login_btn;
     private ProgressBar reg_progress;
     private FirebaseAuth mAuth;
@@ -47,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         reg_confirm_pass_field= findViewById(R.id.Reg_cnfirm_pass);
         reg_btn = findViewById(R.id.Login_Btn);
         reg_login_btn= findViewById(R.id.Login_Reg_Btn);
-        reg_progress= findViewById(R.id.Regprogress);
+        // reg_progress= findViewById(R.id.Regprogress);
         reg_login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirm_pass = reg_confirm_pass_field.getText().toString();
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(confirm_pass)) {
                     if(pass.equals(confirm_pass)){
-                        reg_progress.setVisibility(View.VISIBLE);
+                       // reg_progress.setVisibility(View.VISIBLE);
+                        showProgressingView();
                         mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                             @Override
@@ -84,7 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     String errorMessage = Objects.requireNonNull (task.getException ()).getMessage();
                                     Toast.makeText(RegisterActivity.this, "Error :" + errorMessage, Toast.LENGTH_SHORT).show();
                                 }
-                                reg_progress.setVisibility(View.INVISIBLE);
+                               // reg_progress.setVisibility(View.INVISIBLE);
+                                hideProgressingView();
                             }
                         });
 
@@ -154,6 +161,24 @@ public class RegisterActivity extends AppCompatActivity {
         Intent mainIntent = new Intent( RegisterActivity.this, MainActivity.class);
         startActivity(mainIntent);
         finish();
+    }
+
+    public void showProgressingView() {
+
+        if (!isProgressShowing_reg) {
+            isProgressShowing_reg = true;
+            progressView_reg = (ViewGroup) getLayoutInflater().inflate(R.layout.progressbar_layout, null);
+            View v = this.findViewById(android.R.id.content).getRootView();
+            ViewGroup viewGroup = (ViewGroup) v;
+            viewGroup.addView(progressView_reg);
+        }
+    }
+
+    public void hideProgressingView() {
+        View v = this.findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView_reg);
+        isProgressShowing_reg = false;
     }
 }
 
