@@ -1,7 +1,9 @@
 package com.rumooursindoyo.moheeeetgupta;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser() != null) {
 
             mainbottomNav = findViewById(R.id.mainBottomNav);
+
 
             // FRAGMENTS
             homeFragment = new HomeFragment();
@@ -226,24 +230,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment, Fragment currentFragment){
+    private void replaceFragment(Fragment fragment, Fragment currentFragment) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        if(fragment == homeFragment){
+        if (fragment == homeFragment) {
 
             fragmentTransaction.hide(accountFragment);
             fragmentTransaction.hide(notificationFragment);
 
         }
 
-        if(fragment == accountFragment){
+        if (fragment == accountFragment) {
 
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(notificationFragment);
 
         }
 
-        if(fragment == notificationFragment){
+        if (fragment == notificationFragment) {
 
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(accountFragment);
@@ -255,6 +259,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
-
 
 }

@@ -24,7 +24,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="28dp"
-        android:text="@string/comments"
+        android:text="@string/reviews"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_marginBottom="16dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/your_comments_here"
+        android:hint="@string/your_review_here"
         android:inputType="textMultiLine"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,9 +50,13 @@
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/comment_field"
         app:srcCompat="@drawable/action_comment_send"
+
         android:contentDescription="@string/todo" />
 
     <androidx.recyclerview.widget.RecyclerView
