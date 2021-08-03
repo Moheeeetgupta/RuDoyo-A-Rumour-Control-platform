@@ -1,5 +1,6 @@
 package com.rumooursindoyo.moheeeetgupta;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 // import android.telecom.Call;
@@ -63,13 +64,10 @@ public class NotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.tfe_tc_activity_main, container, false);
 
-
-
-
-
         videiId = view.findViewById( R.id.ytid );
 
         Log.v(TAG, "onCreate");
+
 
         client = new TextClassificationClient(((AppCompatActivity)getActivity()).getApplicationContext());
         handler = new Handler();
@@ -80,7 +78,7 @@ public class NotificationFragment extends Fragment {
             public void onClick(View v) {
                 // checking if our editText field is empty or not.
                 if (videiId.getText().toString().isEmpty()) {
-                    videiId.setError( "Please enter search query" );
+                    videiId.setError( "Please enter video link..." );
                     return;
                 }
 
@@ -88,10 +86,21 @@ public class NotificationFragment extends Fragment {
                 //    if (getSupportActionBar() != null) {
                 //        getSupportActionBar().hide();
                 //    }
+/*
+                if(urlFromActivity != null){
+                    String id = getVideoId( videiId.getText().toString() );
+                    getSuperHeroes( id );
+                }else{
+                    String id = getVideoId(urlFromActivity);
+                    getSuperHeroes( id );
+                }
+
+ */
+
+
 
                 String id = getVideoId( videiId.getText().toString() );
                 getSuperHeroes( id );
-
 
             }
         });
@@ -140,7 +149,7 @@ public class NotificationFragment extends Fragment {
                     TopComments comments = obj.getComment();
                     Snippetii snippetii = comments.getSnippetii();
                     String res = snippetii.getTextDisplay();
-                    commentssss += res;
+                    commentssss =commentssss+" "+ res;
                 }
                 classify(commentssss);
 
@@ -195,15 +204,29 @@ public class NotificationFragment extends Fragment {
         // Run on UI thread as we'll updating our app UI
         getActivity().runOnUiThread(
                 () -> {
-                    String textToShow = "Output:\n";
+                  // String textToShow = "Output:\n";
+                    String textToShow = "\n";
+                    /*
                     for (int i = 0; i < results.size(); i++) {
                         Result result = results.get(i);
-                        textToShow += String.format("    %s: %s\n", result.getTitle(), result.getConfidence());
+                        textToShow += String.format("    %s: %s\n", result.getTitle(), result.getConfidence()*100);
                     }
-                    textToShow += "---------\n";
+
+                     */
+
+                    Result result1 = results.get(0);
+                    textToShow += String.format("    %s: %s\n", "Truth Percentage of Video ", result1.getConfidence()*100);
+
+                    Result result2 = results.get(1);
+                    textToShow += String.format("    %s: %s\n", "False Percentage of Video ", result2.getConfidence()*100);
+                    resultTextView.append(textToShow);
+
+
+
+                    // textToShow += "---------\n";
 
                     // Append the result to the UI.
-                    resultTextView.append(textToShow);
+                   // resultTextView.append(textToShow);
 
                     // Clear the input text.
                     // inputEditText.getText().clear();

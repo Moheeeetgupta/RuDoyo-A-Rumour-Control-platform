@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -29,8 +30,11 @@ public class loginactivity extends AppCompatActivity {
     private Button loginBtn;
     private TextView loginRegBtn;
     private FirebaseAuth mAuth;
-   // private ProgressBar loginProg;
+    private ProgressBar loginProg;
     private TextView forgotbtn;
+   // ViewGroup progressView;
+   // protected boolean isProgressShowing = false;
+   // private LinearLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,8 @@ public class loginactivity extends AppCompatActivity {
         loginPassText =  (EditText) findViewById(R.id.Login_pass);
         loginBtn =(Button)findViewById(R.id.Login_Btn);
         loginRegBtn =findViewById(R.id.Login_Reg_Btn);
-       // loginProg= (ProgressBar) findViewById(R.id.Regprogress);
+        loginProg= (ProgressBar) findViewById(R.id.login_progress);
+        // mainLayout = findViewById(R.id.linearLayout);
         forgotbtn =findViewById (R.id.btn_forgot_password);
         forgotbtn.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -66,7 +71,9 @@ public class loginactivity extends AppCompatActivity {
                 String loginPass = loginPassText.getText().toString();
                 if(!TextUtils.isEmpty(loginEmail) && !TextUtils.isEmpty(loginPass))
                 {
-                   // loginProg.setVisibility(View.VISIBLE);
+                   loginProg.setVisibility(View.VISIBLE);
+                  // isProgressShowing = true;
+                  // showProgressingView();
                     mAuth.signInWithEmailAndPassword(loginEmail,loginPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                                                                          @Override
                                                                                                          public void onComplete(@NonNull Task<AuthResult> task) {
@@ -76,7 +83,13 @@ public class loginactivity extends AppCompatActivity {
                                                                                                                  String errorMessage = task.getException().getMessage();
                                                                                                                  Toast.makeText(loginactivity.this, "Error :" + errorMessage, Toast.LENGTH_SHORT).show();
                                                                                                              }
-                                                                                                        //     loginProg.setVisibility(View.INVISIBLE);
+                                                                                                            loginProg.setVisibility(View.INVISIBLE);
+                                                                                                             // hideProgressingView();
+
+                                                                                                           //  mainLayout.setVisibility(View.GONE);
+                                                                                                           //  loginProg.getWindow().setBackgroundDrawableResource(
+                                                                                                            //         android.R.color.transparent);
+
                                                                                                          }
                                                                                                      }
                     );
@@ -154,4 +167,25 @@ public void showRecoverPaswword() {
         finish();
 
     }
+
+/*
+    public void showProgressingView() {
+
+        if (!isProgressShowing) {
+            isProgressShowing = true;
+            progressView = (ViewGroup) getLayoutInflater().inflate(R.id.layout_progress, null);
+            View v = this.findViewById(android.R.id.content).getRootView();
+            ViewGroup viewGroup = (ViewGroup) v;
+            viewGroup.addView(progressView);
+        }
+    }
+
+    public void hideProgressingView() {
+        View v = this.findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView);
+        isProgressShowing = false;
+    }
+
+ */
 }

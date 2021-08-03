@@ -35,10 +35,9 @@
     <string name="todoblogpost">TODO</string>
     <string name="todo3">TODO</string>
     <string name="_0_likes">0 Favoured</string>
-    <string name="comments">Comments:</string>
-    <string name="your_comment_here">Your Comment here...</string>
+    <string name="reviews">Reviews:</string>
+    <string name="your_review_here">Your Review here...</string>
     <string name="todo4">TODO</string>
-    <string name="your_comments_here">Your Comments here...</string>
     <string name="_0_comments">0 Reviews</string>
     <string name="todo5">TODO</string>
     <string name="todo" />
@@ -46,7 +45,7 @@
     <string name="_0_views">0 UpVotes</string>
     <string name="see_reviews">Reviews</string>
     <string name="post_rumours_suggestions">Post Rumours/Suggestions</string>
-    <string name="doyo_post">DoYo Post</string>
+    <string name="rudoyo_post">RuDoYo Post</string>
     <string name="suggest_as_much_doctors_as_u_can">Suggest as much doctors as u can.</string>
 
     <string name="suggest_doctor">Suggest doctor</string>
@@ -61,16 +60,6 @@
 
     <string name="about">About</string>
     <string name="forgot_password">Forgot password</string>
-    <string name="shivani_kumari">Shivani Kumari</string>
-    <string name="sakshi_gupta">Sakshi Gupta</string>
-    <string name="kanchan_kumar">Kanchan Kumar</string>
-    <string name="aman_kumar_jha">Aman Kumar Jha</string>
-    <string name="mohit_gupta">Mohit Gupta</string>
-    <string name="doyo_team">DoYo Team</string>
-    <string name="doyo_is_a_rumour_control_platform_which_offers_users_fake_messages_verification_service_on_the_ease_of_just_posting_their_doubt_on_doyo_wall_and_getting_verified_by_intellectuals_around_them_and_the_doyo_team">DOYO is a Rumour-Control Platform which offers users Fake messages verification service on the ease of just posting their doubt on DOYO wall and getting verified by Intellectuals around them and the DOYO team.</string>
-    <string name="about_us">ABOUT US :</string>
-    <string name="driven_by_the_problem_faced_doyo_aims_to_eliminate_the_spread_of_misinformation_with_an_ask_and_review_system">Driven by the problems faced ,DOYO aims to eliminate the spread of misinformation with an Ask-and Review system.</string>
-    <string name="with_the_help_of_doyo_users_can_easily_verify_messages_interact_on_such_issues_and_can_have_access_to_other_updates_">With the help of DOYO, users can easily verify messages, interact on such issues and can have access to other updates .</string>
     <string name="doyo_usercomment">DoYo User</string>
     <string name="loading_comment">Loading Comment...</string>
 
@@ -78,13 +67,10 @@
     <string name="suggest_doctors_as_much_as_you_can">Suggest doctors as much as you can.</string>
     <string name="doyo">DoYo</string>
 
-    <string name="doyo_user">DoYo User</string>
+    <string name="doyo_user">RuDoYo User</string>
     <string name="forgot_password12">Forgot Password ?</string>
 
-    <string name="muskan_gupta">Muskan Gupta</string>
-    <string name="sakshi_gupta1">Sakshi Gupta</string>
-    <string name="kanchan_kumar1">Kanchan kumar</string>
-    <string name="aman_kumar_jha1">Aman kumar jha</string>
+
     <string name="share_and_save_lives">Share and promote!</string>
     <string name="government_updates">Government updates.</string>
 
@@ -101,4 +87,7 @@
     <string name="_0_confused1">0 Neutral</string>
     <string name="tfe_tc_edit_text_hint" translatable="false">Please enter your movie review.</string>
     <string name="tfe_tc_button_ok" translatable="false">Predict</string>
+    <string name="new_post" translatable="false">New Post</string>
+    <string name="about_us">About Us</string>
+    <string name="Verify_Video">Verify Video</string>
 </resources>

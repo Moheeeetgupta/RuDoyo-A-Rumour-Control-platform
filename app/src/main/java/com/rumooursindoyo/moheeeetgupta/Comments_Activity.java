@@ -1,8 +1,11 @@
 package com.rumooursindoyo.moheeeetgupta;
 
 
-import android.os.Build;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,7 +58,10 @@ public class Comments_Activity extends AppCompatActivity {
 
         commentToolbar = findViewById(R.id.comment_toolbar);
         setSupportActionBar(commentToolbar);
-        getSupportActionBar().setTitle("Comments");
+     //   getSupportActionBar().setTitle("Reviews"); // Changed Comments to Reviews
+        Spannable text = new SpannableString("Reviews");
+        text.setSpan(new ForegroundColorSpan(Color.WHITE), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(text);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -108,7 +114,7 @@ public class Comments_Activity extends AppCompatActivity {
 
 
                 if (comment_message.isEmpty()) {
-                    comment_field.setError( "Please enter comment" );
+                    comment_field.setError( "Please enter review" );
                     return;
                 }
 
@@ -123,7 +129,7 @@ public class Comments_Activity extends AppCompatActivity {
 
                         if(!task.isSuccessful()){
 
-                            Toast.makeText(Comments_Activity.this, "Error Posting Comment : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Comments_Activity.this, "Error Posting Reviews : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                         } else {
 
