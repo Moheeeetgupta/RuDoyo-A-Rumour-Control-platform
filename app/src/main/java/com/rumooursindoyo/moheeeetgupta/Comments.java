@@ -1,10 +1,14 @@
 package com.rumooursindoyo.moheeeetgupta;
 import java.util.Date;
 
+/**
+ * This is java class which contains every field to show in omments
+ * when user comment or review to a particular post
+ */
 public class Comments {
 
     private String message, user_id;
-    private Date timestamp;
+    private Date timestamp; // on which date reviews are posted on a particular post
     public  Comments(){
 
     }
