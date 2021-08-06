@@ -149,7 +149,7 @@ public class AccountFragment extends Fragment {
 
                                 user_id = firebaseAuth.getCurrentUser ().getUid ();
 
-                                File newImageFile = new File (Objects.requireNonNull (mainImageURI.getPath ()));
+                                File newImageFile = new File (mainImageURI.getPath ());
                                 try {
 
                                     compressedImageFile = new Compressor (getActivity ())

@@ -17,7 +17,6 @@
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-
         <activity android:name="com.rumooursindoyo.moheeeetgupta.MainActivity"
             android:label="RuDoYo">
             <intent-filter>
@@ -50,7 +49,6 @@
 
 
         </activity>
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
