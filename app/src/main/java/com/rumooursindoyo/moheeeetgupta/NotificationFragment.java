@@ -1,9 +1,7 @@
 package com.rumooursindoyo.moheeeetgupta;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-// import android.telecom.Call;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +28,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// import android.telecom.Call;
+
 // import javax.security.auth.callback.Callback;
 
 
@@ -50,6 +50,7 @@ public class NotificationFragment extends Fragment {
     // private EditText inputEditText;
     private Handler handler;
     private ScrollView scrollView;
+    private String sharedLink=null;
 
 
 
@@ -63,8 +64,13 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.tfe_tc_activity_main, container, false);
-
+        MainActivity mainActivity=(MainActivity)getActivity ();
+         sharedLink=mainActivity.getLink ();
         videiId = view.findViewById( R.id.ytid );
+        if(sharedLink!=null){
+            videiId.setText (sharedLink);
+        }
+
 
         Log.v(TAG, "onCreate");
 
@@ -76,10 +82,17 @@ public class NotificationFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
+
                 // checking if our editText field is empty or not.
                 if (videiId.getText().toString().isEmpty()) {
                     videiId.setError( "Please enter video link..." );
                     return;
+                }
+                if(isYoutubeUrl(videiId.getText ().toString ())==false){
+                    Toast.makeText(getActivity (),"Please Enter a valid youtube link...",Toast.LENGTH_LONG).show ();
+                }else{
+                    String id = getVideoId( videiId.getText().toString() );
+                    getSuperHeroes( id );
                 }
 
                 // if listView will be shown then, below code will be used to hide actionbar
@@ -99,8 +112,7 @@ public class NotificationFragment extends Fragment {
 
 
 
-                String id = getVideoId( videiId.getText().toString() );
-                getSuperHeroes( id );
+
 
             }
         });
@@ -165,7 +177,21 @@ public class NotificationFragment extends Fragment {
 
 
     }
-
+    public static boolean isYoutubeUrl(String youTubeURl)
+    {
+        boolean success;
+        String pattern = "^(http(s)?:\\/\\/)?((w){3}.)?youtu(be|.be)?(\\.com)?\\/.+";
+        if (!youTubeURl.isEmpty() && youTubeURl.matches(pattern))
+        {
+            success = true;
+        }
+        else
+        {
+            // Not Valid youtube URL
+            success = false;
+        }
+        return success;
+    }
 
     @Override
     public void onStart() {
@@ -228,9 +254,9 @@ public class NotificationFragment extends Fragment {
                     // Append the result to the UI.
                    // resultTextView.append(textToShow);
 
-                    // Clear the input text.
-                    // inputEditText.getText().clear();
-                    videiId.getText().clear();
+//                    // Clear the input text.
+//                    // inputEditText.getText().clear();
+//                    videiId.getText().clear();
 
                     // Scroll to the bottom to show latest entry's classification result.
                     scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));

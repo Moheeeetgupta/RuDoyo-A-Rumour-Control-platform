@@ -58,24 +58,10 @@ public class SetupAcivity extends AppCompatActivity {
     private Button setupBtn;
     private ProgressBar setupProgress;
 
-    /**
-     * public class StorageReference extends Object.
-     * implements Comparable<StorageReference> Represents a reference to a Google Cloud Storage object.
-     * Developers can upload and download objects, get/set object metadata, and delete an object at a specified path.
-     */
     private StorageReference storageReference;
     private FirebaseAuth firebaseAuth;
-    /**
-     * In Cloud Firestore, you can use queries to retrieve individual, specific documents or
-     * to retrieve all the documents in a collection that match your query parameters.
-     * Your queries can include multiple, chained filters and combine filtering and sorting.
-     */
     private FirebaseFirestore firebaseFirestore;
 
-    /**
-     * In effect, a bitmap is an array of binary data representing the values of pixels
-     * in an image or display
-     */
     private Bitmap compressedImageFile;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -84,39 +70,25 @@ public class SetupAcivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_acivity);
 
-        Toolbar setupToolbar = findViewById(R.id.setupToolbar); // doubt
+        Toolbar setupToolbar = findViewById(R.id.setupToolbar);
         setSupportActionBar(setupToolbar);
        getSupportActionBar ();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        /**
-         * getUid() :- Returns the unique identifier of the provider type that, this instance corresponds to.
-         * abstract "String.getUid()" Returns a user identifier as specified by the authentication provider.
-         */
-        user_id = Objects.requireNonNull (firebaseAuth.getCurrentUser ()).getUid(); // getting user id of current authenticated user.
+        user_id = Objects.requireNonNull (firebaseAuth.getCurrentUser ()).getUid();
 
-        firebaseFirestore = FirebaseFirestore.getInstance(); // getting current instance / state of FirebaseFirestore
-
-        /**
-         * FirebaseStorage is a service that supports uploading and downloading large objects to Google Cloud Storage
-         */
+        firebaseFirestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
 
-        setupImage = findViewById(R.id.setup_image); // image for setting up
-        setupName = findViewById(R.id.Setup_name); // name for setting up
-        setupBtn = findViewById(R.id.Setup_button); // button for setting up
-        setupProgress = findViewById(R.id.setup_progress); // progressbar for setting up
+        setupImage = findViewById(R.id.setup_image);
+        setupName = findViewById(R.id.Setup_name);
+        setupBtn = findViewById(R.id.Setup_button);
+        setupProgress = findViewById(R.id.setup_progress);
 
-        setupProgress.setVisibility(View.VISIBLE); // making progressbar visible
-        setupBtn.setEnabled(false); // disabling setUp button
+        setupProgress.setVisibility(View.VISIBLE);
+        setupBtn.setEnabled(false);
 
-        /**
-         * here is the code snippet to get and show  profile picture and User name to the setup activity when user has registered and have set their profile picture and name
-         *
-         * FirebaseFirestore have collection of folders and these are collectively called as collection, here Users is one of folder belongs to collection
-         * document is child of collection.
-         */
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -125,31 +97,17 @@ public class SetupAcivity extends AppCompatActivity {
 
                     if(task.getResult().exists()){
 
-                        String name = task.getResult().getString("name"); // name will be retrived of corresponding user_id
-                        String image = task.getResult().getString("image"); // image url in string format will be retrived from corresponding user_id
+                        String name = task.getResult().getString("name");
+                        String image = task.getResult().getString("image");
 
-                        mainImageURI = Uri.parse(image); // url string will be parsed into Uri class parse function to parse string into url.
+                        mainImageURI = Uri.parse(image);
 
-                        setupName.setText(name); // retrived name from firestore will be set up to the nameing part of the setup activity.
+                        setupName.setText(name);
 
-                        /**
-                         * RequestOptions :- An abstract class representing browser-based request parameters.
-                         * This class is used to supply options when creating a new credential.
-                         * This class is used to supply an authentication request with the data it needs to generate an assertion.
-                         */
                         RequestOptions placeholderRequest = new RequestOptions();
-
-                        /**
-                         *  Placeholder :- these are Drawables that are shown while a request is in progress.
-                         *  When a request completes successfully, the placeholder is replaced with the requested resource.
-                         *  If the requested resource is loaded from memory, the placeholder may never be shown.
-                         */
                         placeholderRequest.placeholder(R.drawable.default_image);
 
-                        /**
-                         * Glide Api will set up default image first with setDefaultRequestOptions to the setup activity and then will load image from " mainImageURI " into profile picture image view.
-                         */
-                        Glide.with(SetupAcivity.this).setDefaultRequestOptions(placeholderRequest).load(mainImageURI).into(setupImage); // I have changed image to mainImageURI
+                        Glide.with(SetupAcivity.this).setDefaultRequestOptions(placeholderRequest).load(image).into(setupImage);
 
 
                     }
@@ -161,38 +119,29 @@ public class SetupAcivity extends AppCompatActivity {
 
                 }
 
-                // progress bar will be invisible after finishing
                 setupProgress.setVisibility(View.INVISIBLE);
-
-                // now setup button will be enabled now
                 setupBtn.setEnabled(true);
 
             }
         });
 
 
-
-        // this code snippet is used for  setting up profile picture for the first time when user have created their account.
         setupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String user_name = setupName.getText().toString(); // getting setupName entered in the edittext
-                if(mainImageURI==null) { // if mainImageURI have set to null , means have not assigned any url.
+                final String user_name = setupName.getText().toString();
+                if(mainImageURI==null) {
                     Toast.makeText (SetupAcivity.this, "Profile picture and username are compulsory", Toast.LENGTH_SHORT).show ();
                 }else{
-                    // if user_name has  entered and picture has choosen , then enter in the below if block.
                     if (!TextUtils.isEmpty(user_name) && mainImageURI != null) {
 
-                        // progress bar will be visible.
                         setupProgress.setVisibility (View.VISIBLE);
 
-                        // ?
                         if (isChanged) {
 
                             user_id = firebaseAuth.getCurrentUser ().getUid ();
 
-                            // ?
                             File newImageFile = new File (mainImageURI.getPath ());
                             try {
 
@@ -206,30 +155,16 @@ public class SetupAcivity extends AppCompatActivity {
                                 e.printStackTrace ();
                             }
 
-                            /**
-                             * ByteArrayOutputStream class creates an Output Stream for writing data into byte array.
-                             * The size of buffer grows automatically as data is written to it.
-                             * There is no affect of closing the byteArrayOutputStream on the working of it's methods.
-                             * They can be called even after closing the class
-                             */
                             ByteArrayOutputStream baos = new ByteArrayOutputStream ();
-
-                            // compress the imagefile
                             compressedImageFile.compress (Bitmap.CompressFormat.JPEG, 100, baos);
-                            byte[] thumbData = baos.toByteArray (); // conversion of bas to byte array.
+                            byte[] thumbData = baos.toByteArray ();
 
-                            /**
-                             * UploadTask :- public class UploadTask extends StorageTask<UploadTask.TaskSnapshot> An controllable task that uploads and
-                             * fires events for success, progress and failure.
-                             * It also allows pause and resume to control the upload operation.
-                             */
-                            UploadTask image_path = storageReference.child ("profile_images").child (user_id + ".jpg").putBytes (thumbData); // uploading image_path to profile_image folder at firebase storage as reference.
+                            UploadTask image_path = storageReference.child ("profile_images").child (user_id + ".jpg").putBytes (thumbData);
 
                             image_path.addOnCompleteListener (new OnCompleteListener<UploadTask.TaskSnapshot> () {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
-                                    // if task is successfull then store user_name to Firestore.
                                     if (task.isSuccessful ()) {
                                         storeFirestore (task, user_name);
 
@@ -306,7 +241,6 @@ public class SetupAcivity extends AppCompatActivity {
         assert download_uri != null;
         userMap.put("image", download_uri.toString());
 
-        // this code snippet is for storing user_name and image reference from storage to the FirebaseFirestore.
         firebaseFirestore.collection("Users").document(user_id).set(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -314,7 +248,6 @@ public class SetupAcivity extends AppCompatActivity {
 
                 if(task.isSuccessful()){
 
-                    // if profile has set up then mainactivity will be started.
                     Toast.makeText(SetupAcivity.this, "The user Settings are updated.", Toast.LENGTH_LONG).show();
                     Intent mainIntent = new Intent(SetupAcivity.this, MainActivity.class);
                     startActivity(mainIntent);
@@ -337,7 +270,6 @@ public class SetupAcivity extends AppCompatActivity {
 
     private void BringImagePicker() {
 
-        // code snippet for cropping image picked forsetting it as profile picture
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setAspectRatio(1, 1)
@@ -345,7 +277,6 @@ public class SetupAcivity extends AppCompatActivity {
 
     }
 
-    // ?
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -37,26 +37,8 @@ public class Comments_Activity extends AppCompatActivity {
     private EditText comment_field;
     private ImageView comment_post_btn;
 
-    /**
-     * RecyclerView is the ViewGroup that contains the views corresponding to your data.
-     * It's a view itself, so you add RecyclerView into your layout the way you would add any other UI element.
-     * After the view holder is created, the RecyclerView binds it to its data. You define the view holder by extending RecyclerView.
-     *
-     * RecyclerView is a widget that is more flexible and advanced version of GridView and ListView.
-     * It is a container for displaying large datasets which can be scrolled efficiently by maintaining limited number of view
-     *
-     *  RecyclerView is a UI component which allows us to create a scrolling list.
-     *  It is basically a new ViewGroup used to render any adapter-based view in horizontal/vertical /grid or
-     *  staggered grid manner using the Viewholder pattern.
-     */
 
     private RecyclerView comment_list;
-
-    /**
-     * Adapter :- An Adapter object acts as a bridge between an AdapterView and the underlying data for that view.
-     * The Adapter provides access to the data items.
-     * The Adapter is also responsible for making a View for each item in the data set.
-     */
     private Comments_Recycler_Adapter commentsRecyclerAdapter;
     private List<Comments> commentsList;
 
@@ -73,13 +55,13 @@ public class Comments_Activity extends AppCompatActivity {
 
         commentToolbar = findViewById(R.id.comment_toolbar);
         setSupportActionBar(commentToolbar);
-        getSupportActionBar().setTitle("Comments"); // setting title to Actionbar
+        getSupportActionBar().setTitle("Comments");
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         current_user_id = firebaseAuth.getCurrentUser().getUid();
-        blog_post_id =getIntent ().getStringExtra("blog_post_id"); // getting the id of particular blog post on which user have to give reviews
+        blog_post_id =getIntent ().getStringExtra("blog_post_id");
 
         comment_field = findViewById(R.id.comment_field);
         comment_post_btn = findViewById(R.id.comment_post_btn);
