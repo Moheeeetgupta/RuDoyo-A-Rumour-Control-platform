@@ -1,9 +1,7 @@
 package com.rumooursindoyo.moheeeetgupta;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
