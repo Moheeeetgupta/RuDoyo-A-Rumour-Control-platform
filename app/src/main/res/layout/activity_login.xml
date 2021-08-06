@@ -76,7 +76,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Log_Email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:backgroundTint="#FF70A8F8"
                     android:drawableStart="@drawable/ic_email_black_24dp"
                     android:drawableLeft="@drawable/ic_email_black_24dp"
