@@ -35,7 +35,7 @@ The android app lets you:
 - Review any rumour
 - Share any youtube video link to the app and predict its truth probabilty by the help of ML model
 
-## Breif Description
+## Brief Process Flow 
 
 - When the user taps on the launcher icon,then firstly he sees the splash screen merged with a lottie animation.
 - After that if user is not logged in then login activity appears.
