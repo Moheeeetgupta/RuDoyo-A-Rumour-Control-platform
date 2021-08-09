@@ -25,14 +25,55 @@ For Video verification, we have fetched top 500 comments on the video from the y
 ## Features
 
 The android app lets you:
-- Connect to your self-hosted wallabag instance or connect to your [wallabag.it](https://wallabag.it) or [Framabag](https://framabag.org) account.
-- Supports wallabag 2.0 and higher.
-- Completely ad-free.
-- Increase and decrease the size of the font and also switch between a serif or sans-serif font for a more comfortable reading experience.
-- Switch between numerous themes.
-- Possibility to cache images locally for offline reading.
-- Get articles read via Text-to-Speech feature.
-- Needs no special permissions on Android 6.0+.
+- Login,Logout
+- Recover password
+- Register with email verification
+- Profile setup
+- Post Rumours and get announcement of post uploaded
+- Crop and compress image before posting
+- upvote,downvote or be neutral on any rumour post.
+- Review any rumour
+- Share any youtube video link to the app and predict its truth probabilty
+
+## Technologies, Libraries and components used
+Technologies and Libraries used:
+- Java  
+- XML
+- Firebase firestore database
+- Firebase storage to store heavy data
+- Firebase Authentication
+- Glide library for image loading
+- TensorflowLite Task api library
+- Retrofit Library
+- Youtube Api V3
+- Material design guidelines
+- Arthurhub’s android image cropper library
+- Hedodenhof’s Circle image view library
+- Zetbaitsu’s image compression library
+- Airbnb’s Lottie animations 
+- Media player api
+
+Android Components Used:
+- RecyclerView
+- LinearLayout
+- Fragments
+- ConstraintLayout
+- RelativeLayout
+- CardView
+- CircleImageView
+- Material text fields ( TextInputEditText )
+- Explicit and implicit intents
+- Intent filters 
+- ProgressBar
+- ToolBar
+- Menu Bar 
+- BottomNavigationView
+- FrameLayout
+- FloatingActionButton
+- CircularImageView
+- TextView, Button, EditText, ImageView
+- ScrollView.
+
 
 ## Screenshots
 
@@ -43,24 +84,3 @@ width="200"
 width="200"
     hspace="10" vspace="10">](/readme/Wallabag%20Article%20View.png)
 
-## Permissions
-
-On Android versions prior to Android 6.0, wallabag requires the following permissions:
-- Full Network Access.
-- View Network Connections.
-- Run at startup.
-- Read and write access to external storage.
-
-The "Run at startup" permission is only used if Auto-Sync feature is enabled and is not utilised otherwise. The network access permissions are made use of for downloading content. The external storage permission is used to cache article images for viewing offline.
-
-## Contributing
-
-wallabag app is a free and open source project developed by volunteers. Any contributions are welcome. Here are a few ways you can help:
- * [Report bugs and make suggestions.](https://github.com/wallabag/android-app/issues)
- * [Translate the app](https://hosted.weblate.org/projects/wallabag/android-app/) (you don't have to create an account).
- * Write some code. Please follow the code style used in the project to make a review process faster.
-
-## License
-
-This application is released under GNU GPLv3 (see [LICENSE](LICENSE)).
-Some of the used libraries are released under different licenses.
