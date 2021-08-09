@@ -1,4 +1,4 @@
-# RuDoYo- A rumour control Android App ![Build status]!
+# RuDoYo- A rumour control Android App
 
 
 <img src="https://user-images.githubusercontent.com/57634381/128712843-b4f252b6-f6f8-4208-adf8-d0946e6966db.png" align="left"
@@ -14,15 +14,8 @@ wallabag is available on the Google Play Store and F-Droid.
 <a href="https://play.google.com/store/apps/details?id=fr.gaulupeau.apps.InThePoche">
     <img alt="Get it on Google Play"
         height="80"
-        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+        src="https://play.google.com/store/apps/details?id=com.rumooursindoyo.moheeeetgupta&hl=en&gl=US" />
 </a>  
-<a href="https://f-droid.org/app/fr.gaulupeau.apps.InThePoche">
-    <img alt="Get it on F-Droid"
-        height="80"
-        src="https://f-droid.org/badge/get-it-on.png" />
-        </a>
-        </p>
-
 ## About
 
 wallabag has been made for you to comfortably read and archive your articles.
