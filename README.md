@@ -99,9 +99,9 @@ Android Components Used:
 
 ## Screenshots
 
-| Feeds | Drawer |
+| Feeds | SignIn |
 |:-:|:-:|
-| ![First](/.github/assets/first.png?raw=true) | ![Sec](/.github/assets/sec.png?raw=true) |
+| ![First](/![WhatsApp Image 2021-08-07 at 11 28 36 PM](https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg)) | ![Sec](/.github/assets/sec.png?raw=true) |
 
 | Repo | Profile |
 |:-:|:-:|
