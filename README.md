@@ -97,12 +97,36 @@ Android Components Used:
 - TextView, Button, EditText, ImageView
 - ScrollView.
 
+![WhatsApp Image 2021-08-07 at 11 28 16 PM](https://user-images.githubusercontent.com/57634381/128724946-d671fed2-596d-49b7-8396-2b56eac2b6aa.jpeg)
+
+![WhatsApp Image 2021-08-07 at 11 28 05 PM](https://user-images.githubusercontent.com/57634381/128724981-4086986e-9dbb-40eb-9556-878db348305a.jpeg)
+
+![WhatsApp Image 2021-08-07 at 11 27 50 PM](https://user-images.githubusercontent.com/57634381/128725035-131fbd1c-ff72-4893-b633-73f48e7faddc.jpeg)
+
+![WhatsApp Image 2021-08-07 at 11 27 41 PM](https://user-images.githubusercontent.com/57634381/128725136-c12b7f68-bd60-4608-90c0-ccd42100d8b4.jpeg)
+
+![WhatsApp Image 2021-08-07 at 11 27 17 PM](https://user-images.githubusercontent.com/57634381/128725195-663a8777-5281-472c-b798-b992b5a14265.jpeg)
+
+![WhatsApp Image 2021-08-07 at 11 27 34 PM](https://user-images.githubusercontent.com/57634381/128725110-bd81ac21-2814-4fdc-bb2e-c8c8103ac317.jpeg)
+
+
+
+
 ## Screenshots
 
 | Sign In | Sign Out |
 |:-:|:-:|
-| ![First](/![WhatsApp Image 2021-08-07 at 11 28 36 PM](https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg)) | ![Sec](![WhatsApp Image 2021-08-07 at 11 28 26 PM](https://user-images.githubusercontent.com/57634381/128724541-04aef8e2-00ea-41ed-ba9a-8bb525bf2906.jpeg)) |
+| ![First](/https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg) | ![Sec](https://user-images.githubusercontent.com/57634381/128724541-04aef8e2-00ea-41ed-ba9a-8bb525bf2906.jpeg) |
 
-| Repo | Profile |
+
+| Home Fragment | Verify Video Fragment |
 |:-:|:-:|
-| ![Third](/.github/assets/third.png?raw=true) | ![Fourth](/.github/assets/fourth.png?raw=true) |
+| ![Third](https://user-images.githubusercontent.com/57634381/128724946-d671fed2-596d-49b7-8396-2b56eac2b6aa.jpeg) | ![Fourth](https://user-images.githubusercontent.com/57634381/128724981-4086986e-9dbb-40eb-9556-878db348305a.jpeg) |
+
+| Home Fragment | Verify Video Fragment |
+|:-:|:-:|
+| ![Third](https://user-images.githubusercontent.com/57634381/128725035-131fbd1c-ff72-4893-b633-73f48e7faddc.jpeg) | ![Fourth](https://user-images.githubusercontent.com/57634381/128725136-c12b7f68-bd60-4608-90c0-ccd42100d8b4.jpeg) |
+
+| Home Fragment | Verify Video Fragment |
+|:-:|:-:|
+| ![Third](https://user-images.githubusercontent.com/57634381/128725195-663a8777-5281-472c-b798-b992b5a14265.jpeg) | ![Fourth](https://user-images.githubusercontent.com/57634381/128725110-bd81ac21-2814-4fdc-bb2e-c8c8103ac317.jpeg) |
