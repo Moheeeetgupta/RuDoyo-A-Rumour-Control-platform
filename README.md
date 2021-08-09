@@ -33,9 +33,9 @@ The android app lets you:
 - Crop and compress image before posting
 - upvote,downvote or be neutral on any rumour post.
 - Review any rumour
-- Share any youtube video link to the app and predict its truth probabilty
+- Share any youtube video link to the app and predict its truth probabilty by the help of ML model
 
-## Technologies, Libraries and components used
+## Technologies, Libraries and Components Used
 Technologies and Libraries used:
 - Java  
 - XML
