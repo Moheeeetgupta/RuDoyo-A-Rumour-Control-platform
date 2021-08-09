@@ -4,11 +4,9 @@
 <img src="https://user-images.githubusercontent.com/57634381/128712843-b4f252b6-f6f8-4208-adf8-d0946e6966db.png" align="left"
 width="200" hspace="10" vspace="10">
 
-wallabag is a self-hosted read-it-later app.  
-Unlike other services, wallabag is free and open source.  
-wallabag for Android is a companion app for [wallabag](https://www.wallabag.org). You need a wallabag account first, which you are going to use in this app.
+Rudoyo is an innovative android app powered by Machine Learning capabilities following the latest material design guidelines to solve one of the most pronounced problems of today's world,the rumours spread by images and videos which is an output of a great combination of Team Work and coordination.
 
-wallabag is available on the Google Play Store and F-Droid.
+wallabag is available on the Google Play Store.
 
 <p align="left">
 <a href="https://play.google.com/store/apps/details?id=com.rumooursindoyo.moheeeetgupta&hl=en&gl=US">
