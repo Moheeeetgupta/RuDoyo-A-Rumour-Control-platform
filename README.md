@@ -99,9 +99,9 @@ Android Components Used:
 
 ## Screenshots
 
-| Feeds | SignIn |
+| Sign In | Sign Out |
 |:-:|:-:|
-| ![First](/![WhatsApp Image 2021-08-07 at 11 28 36 PM](https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg)) | ![Sec](/.github/assets/sec.png?raw=true) |
+| ![First](/![WhatsApp Image 2021-08-07 at 11 28 36 PM](https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg)) | ![Sec](![WhatsApp Image 2021-08-07 at 11 28 26 PM](https://user-images.githubusercontent.com/57634381/128724541-04aef8e2-00ea-41ed-ba9a-8bb525bf2906.jpeg)) |
 
 | Repo | Profile |
 |:-:|:-:|
