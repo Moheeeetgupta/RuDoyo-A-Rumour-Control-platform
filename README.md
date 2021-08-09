@@ -1,4 +1,5 @@
-# wallabag - Android App ![Build status](https://github.com/wallabag/android-app/workflows/CI/badge.svg?branch=master)
+# RuDoYo- A rumour control Android App ![Build status]![Logo](https://user-images.githubusercontent.com/57634381/128712843-b4f252b6-f6f8-4208-adf8-d0946e6966db.png)
+
 
 <img src="/readme/wallabag logo.png" align="left"
 width="200" hspace="10" vspace="10">
