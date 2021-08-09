@@ -25,7 +25,7 @@ For Video verification, we have fetched top 500 comments on the video from the y
 ## Features
 
 The android app lets you:
-- Login,Logout
+- Sign In,Sign Out
 - Recover password
 - Register with email verification
 - Profile setup
@@ -103,7 +103,7 @@ Android Components Used:
 
 ## Screenshots
 
-| Sign In | Sign Out |
+| Sign In | Sign Up |
 |:-:|:-:|
 | ![First](https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg) | ![Sec](https://user-images.githubusercontent.com/57634381/128724541-04aef8e2-00ea-41ed-ba9a-8bb525bf2906.jpeg) |
 
