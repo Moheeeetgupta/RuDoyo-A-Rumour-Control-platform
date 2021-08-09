@@ -119,3 +119,10 @@ Android Components Used:
 | Image Cropper | Uploading... |
 |:-:|:-:|
 | ![Third](https://user-images.githubusercontent.com/57634381/128725110-bd81ac21-2814-4fdc-bb2e-c8c8103ac317.jpeg) | ![Fourth](https://user-images.githubusercontent.com/57634381/128725195-663a8777-5281-472c-b798-b992b5a14265.jpeg) |
+
+## Authors
+
+- [@Moheeeetgupta](https://github.com/Moheeeetgupta)
+- [@sakshi-123-eng](https://github.com/sakshi-123-eng)
+- [@shivi7519](https://github.com/shivi7519)
+
