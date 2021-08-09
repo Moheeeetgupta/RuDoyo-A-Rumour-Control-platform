@@ -107,14 +107,9 @@ Android Components Used:
 |:-:|:-:|:-:|
 | ![First](https://user-images.githubusercontent.com/57634381/128724230-425601d6-27c2-4a1f-b936-fdaba33f8173.jpeg) | ![Sec](https://user-images.githubusercontent.com/57634381/128724541-04aef8e2-00ea-41ed-ba9a-8bb525bf2906.jpeg) | ![Third](https://user-images.githubusercontent.com/57634381/128724946-d671fed2-596d-49b7-8396-2b56eac2b6aa.jpeg)
 
-
-| Home Fragment | Verify Video Fragment |
-|:-:|:-:|
-| ![Third](https://user-images.githubusercontent.com/57634381/128724946-d671fed2-596d-49b7-8396-2b56eac2b6aa.jpeg) | ![Fourth](https://user-images.githubusercontent.com/57634381/128724981-4086986e-9dbb-40eb-9556-878db348305a.jpeg) |
-
-| NewPost Activity | Implicit Intent |
-|:-:|:-:|
-| ![Third](https://user-images.githubusercontent.com/57634381/128725035-131fbd1c-ff72-4893-b633-73f48e7faddc.jpeg) | ![Fourth](https://user-images.githubusercontent.com/57634381/128725136-c12b7f68-bd60-4608-90c0-ccd42100d8b4.jpeg) |
+| Verify Video Fragment | NewPost Activity | Implicit Intent |
+|:-:|:-:|:-:|
+|![Fourth](https://user-images.githubusercontent.com/57634381/128724981-4086986e-9dbb-40eb-9556-878db348305a.jpeg) | ![Fifth](https://user-images.githubusercontent.com/57634381/128725035-131fbd1c-ff72-4893-b633-73f48e7faddc.jpeg) | ![Sixth](https://user-images.githubusercontent.com/57634381/128725136-c12b7f68-bd60-4608-90c0-ccd42100d8b4.jpeg) |
 
 | Image Cropper | Uploading... |
 |:-:|:-:|
