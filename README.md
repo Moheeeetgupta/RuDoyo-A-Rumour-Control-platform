@@ -18,14 +18,9 @@ RuDoYo is available on the Google Play Store.
        
 ## About
 
-wallabag has been made for you to comfortably read and archive your articles.
-You can download wallabag from wallabag.org and follow the instructions to install it on your own server.
-Alternatively, you can directly sign up for [wallabag.it](https://wallabag.it) or [Framabag](https://framabag.org).
+It is a rumour control platform which helps users to verify rumours and clarify their perception about any news. To achieve this, the app provides two ways, first one is that the user can post any rumour which he/she wants to clarify, on Rudoyo post section, this post section is visible to each and every registered Rudoyo user. The post has an option of voting and reviews system through which all registered users can vote either in favour or against the rumour. And the second one is that we have a section of ‘video verification’ in our application, as Youtube videos also spread many rumours and mislead people. For video clarification, users need to share the youtube link in our app section and they will get the truth and false percentage of the particular video. 
+For Video verification, we have fetched top 500 comments on the video from the you tube api  and performed sentiment analysis by the help of a tflite model created by tensorflow library,and trained with IMDB movie reviews dataset which has 25000 labeled(positive/negative) movie reviews.
 
-This android application allows you to put a link in your wallabag instance, letting you read your wallabag links offline.
-
-This application was originally created by Jonathan GAULUPEAU and released under the GNU GPLv3.
-wallabag is a creation from Nicolas Lœuillet released under the MIT License (Expat License).
 
 ## Features
 
