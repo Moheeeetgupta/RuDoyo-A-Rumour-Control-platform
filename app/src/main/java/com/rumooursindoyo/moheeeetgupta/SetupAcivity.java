@@ -187,12 +187,12 @@ public class SetupAcivity extends AppCompatActivity {
                         // progress bar will be visible.
                         setupProgress.setVisibility (View.VISIBLE);
 
-                        // ?
+                        //
                         if (isChanged) {
 
                             user_id = firebaseAuth.getCurrentUser ().getUid ();
 
-                            // ?
+                            // getting local path of picked image for setting up profile .
                             File newImageFile = new File (mainImageURI.getPath ());
                             try {
 
@@ -263,6 +263,7 @@ public class SetupAcivity extends AppCompatActivity {
 
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
 
+                    // if permission is not granted then, request for permission  to read external storage
                     if(ContextCompat.checkSelfPermission(SetupAcivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
 
 
@@ -345,7 +346,10 @@ public class SetupAcivity extends AppCompatActivity {
 
     }
 
-    // ?
+    /**
+     * callback function of BringImagePicker() included intent, this callback function is taking imagePicker intent data , means selected image
+     * to setupActivity when image has picked up and then setting image to setupImage imageView for profile picture.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -357,6 +361,7 @@ public class SetupAcivity extends AppCompatActivity {
                 mainImageURI = result.getUri();
                 setupImage.setImageURI(mainImageURI);
 
+                // now profile image has set up locally.
                 isChanged = true;
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {

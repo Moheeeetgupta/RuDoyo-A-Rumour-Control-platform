@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import org.tensorflow.lite.examples.textclassification.client.Result;
@@ -50,6 +51,8 @@ public class NotificationFragment extends Fragment {
     // private EditText inputEditText;
     private Handler handler;
     private ScrollView scrollView;
+
+
 
 
 
@@ -196,6 +199,7 @@ public class NotificationFragment extends Fragment {
 
                     // Show classification result on screen
                     showResult(text, results);
+
                 });
     }
 
@@ -236,4 +240,8 @@ public class NotificationFragment extends Fragment {
                     scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
                 });
     }
+
+
+
+
 }

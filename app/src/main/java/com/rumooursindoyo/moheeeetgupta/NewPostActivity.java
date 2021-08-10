@@ -138,6 +138,11 @@ public class NewPostActivity extends AppCompatActivity {
 
                             if(task.isSuccessful()){
 
+                                /**
+                                 * File :- Android uses a file system that's similar to disk-based file systems on other platforms.
+                                 * The system provides several options for you to save your app data.
+                                 * Shared storage: Store files that your app intends to share with other apps, including media, documents, and other files.
+                                 */
                                 File newThumbFile = new File(postImageUri.getPath());
                                 try {
 
@@ -155,6 +160,11 @@ public class NewPostActivity extends AppCompatActivity {
                                 compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                                 byte[] thumbData = baos.toByteArray();
 
+                                /**
+                                 * UploadTask :- Protected Methods. public class UploadTask extends StorageTask<UploadTask.TaskSnapshot>
+                                 * An controllable task that uploads and fires events for success, progress and failure.
+                                 * It also allows pause and resume to control the upload operation.
+                                 */
                                 UploadTask uploadTask = storageReference.child("post_images/thumbs")
                                         .child(randomName + ".jpg").putBytes(thumbData);
 
