@@ -37,6 +37,29 @@ public class Comments_Recycler_Adapter extends RecyclerView.Adapter<Comments_Rec
 
     }
 
+    /**
+     * ViewHolder :- It describes an item view and metadata about its place within the RecyclerView.
+     * RecyclerView. Adapter implementations should subclass ViewHolder and add fields for caching potentially expensive View.
+     * findViewById(int) results.
+     */
+
+    /**
+     * onCreateViewHolder()  :- It creates a new ViewHolder object whenever the RecyclerView needs a new one.
+     * This is the moment when the row layout is inflated, passed to the ViewHolder object and each child view can be
+     * found and stored.
+     */
+
+
+    /**
+     * Inflating :- When you write an XML layout, it will be inflated by the Android OS which basically means that it will be
+     * rendered by creating view object in memory.
+     */
+
+    /**
+     * LayoutInflater :- It is a class used to instantiate layout XML file into its corresponding view objects which can be used in
+     * Java programs. In simple terms, there are two ways to create UI in android.
+     * One is a static way and another is dynamic or programmatically.
+     */
 
     @Override
     public Comments_Recycler_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -76,6 +99,7 @@ public class Comments_Recycler_Adapter extends RecyclerView.Adapter<Comments_Rec
     }
 
 
+    // for getting comments count
     @Override
     public int getItemCount() {
 
@@ -92,6 +116,10 @@ public class Comments_Recycler_Adapter extends RecyclerView.Adapter<Comments_Rec
 
     }
 
+    /**
+     * RecyclerView is already recycling and reusing the Views and the corresponding ViewHolders.
+     * The number of ViewHolder (and View) present at any time depends on the number visible items on the screen.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private View mView;
@@ -116,8 +144,20 @@ public class Comments_Recycler_Adapter extends RecyclerView.Adapter<Comments_Rec
             commentimage =mView.findViewById (R.id.comment_image);
             commentusername=mView.findViewById (R.id.comment_username);
             commentusername.setText (name);
+
+            /**
+             * RequestOptions :- An abstract class representing browser-based request parameters.
+             * This class is used to supply options when creating a new credential.
+             * This class is used to supply an authentication request with the data it needs to generate an assertion.
+             */
             RequestOptions placeholderOption =new RequestOptions ();
             placeholderOption.placeholder (R.drawable.profile_placeholder);
+
+            /**
+             * Glide :- It is an Image Loader Library for Android developed by bumptech and is a library that is recommended by Google.
+             * It has been used in many Google open source projects including Google I/O 2014 official application.
+             * It provides animated GIF support and handles image loading/caching.
+             */
             Glide.with(context).applyDefaultRequestOptions (placeholderOption).load(image).into(commentimage);
 
         }

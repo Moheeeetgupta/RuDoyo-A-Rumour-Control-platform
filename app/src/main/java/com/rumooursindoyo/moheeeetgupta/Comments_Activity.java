@@ -93,13 +93,29 @@ public class Comments_Activity extends AppCompatActivity {
         comment_list.setAdapter(commentsRecyclerAdapter);
 
 
+        // code snippet for retriving comments to show in comment section of that particular blog post tapped by the user.
         firebaseFirestore.collection("Posts/" + blog_post_id + "/Comments")
                 .addSnapshotListener(Comments_Activity.this, new EventListener<QuerySnapshot>() {
+                    /**
+                     * QuerySnapshot :- A QuerySnapshot contains zero or more DocumentSnapshot objects representing the results of a
+                     * query. The documents can be accessed as an array via the docs property or enumerated using the forEach method.
+                     * The number of documents can be determined via the empty and size properties.
+                     */
+
+                    /**
+                     * DocumentSnapshot :- A DocumentSnapshot contains data read from a document in your Firestore database.
+                     * The data can be extracted with .For a DocumentSnapshot that points to a non-existing document,
+                     * any data access will return 'undefined'. You can use the exists property to explicitly verify a document's existence
+                     */
                     @Override
                     public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
                         if (!documentSnapshots.isEmpty()) {
 
+                            /**
+                             * DocumentChange :- A DocumentChange represents a change to the documents matching a query.
+                             * It contains the document affected and a the type of change that occurred (added, modified, or removed).
+                             */
                             for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
 
                                 if (doc.getType() == DocumentChange.Type.ADDED) {
@@ -118,6 +134,7 @@ public class Comments_Activity extends AppCompatActivity {
                     }
                 });
 
+        // code sniipet for posting reviews
         comment_post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,8 +150,26 @@ public class Comments_Activity extends AppCompatActivity {
                 Map<String, Object> commentsMap = new HashMap<>();
                 commentsMap.put("message", comment_message);
                 commentsMap.put("user_id", current_user_id);
+
+                /**
+                 * FieldValue :- The FIELDVALUE function returns all matching fields(s) from the linked data type specified in the value argument.
+                 * The FIELDVALUE function belongs to the Lookup & Reference family of functions.
+                 */
+
+                /**
+                 * serverTimestamp() :-
+                 When you call FieldValue. serverTimestamp() , you'll get back a FieldValue type object that stands in for
+                 the current moment in time, as reckoned by Google.
+                 You can't get time values out of it, and you can't do time math with it
+                 */
+
                 commentsMap.put("timestamp", FieldValue.serverTimestamp());
 
+                /**
+                 * DocumentReference  :- It refers to a document location in a Cloud Firestore database and can be used to write,
+                 * read, or listen to the location. There may or may not exist a document at the referenced location.
+                 * A DocumentReference can also be used to create a CollectionReference to a subcollection.
+                 */
                 firebaseFirestore.collection("Posts/" + blog_post_id + "/Comments").add(commentsMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {

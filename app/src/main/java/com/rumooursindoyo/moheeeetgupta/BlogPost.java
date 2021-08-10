@@ -2,6 +2,9 @@ package com.rumooursindoyo.moheeeetgupta;
 
 import java.util.Date;
 
+/**
+ * This is the class for storing blogpost data as a collection of image, user_id, image_thumb, desc and timestamp.
+ */
 public class BlogPost extends BlogPostId {
 
     public String user_id, image_url, desc, image_thumb;
