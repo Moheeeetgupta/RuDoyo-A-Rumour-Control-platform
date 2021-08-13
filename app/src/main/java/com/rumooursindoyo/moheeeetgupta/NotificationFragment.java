@@ -42,6 +42,7 @@ public class NotificationFragment extends Fragment {
     private final static String expression = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
     EditText videiId;
 
+    private  int flag = 0;
     ViewGroup progressView;
     View view;
     protected boolean isProgressShowing = false;
@@ -51,6 +52,10 @@ public class NotificationFragment extends Fragment {
     private TextClassificationClient client;
 
     private TextView resultTextView;
+    private TextView resultCommentTextView;
+    private TextView headingToShow;
+    private View viewDivider;
+  //  private View viewDividerBottom;
     // private EditText inputEditText;
     private Handler handler;
     private ScrollView scrollView;
@@ -77,6 +82,9 @@ public class NotificationFragment extends Fragment {
             videiId.setText (sharedLink);
         }
 
+        headingToShow = view.findViewById( R.id.text_heading );
+        viewDivider = view.findViewById( R.id.view_divider );
+      //  viewDividerBottom = view.findViewById( R.id.view_divider_bottom );
         Log.v(TAG, "onCreate");
 
 
@@ -114,8 +122,15 @@ public class NotificationFragment extends Fragment {
                     Toast.makeText(getActivity (),"Please Enter a valid youtube link...",Toast.LENGTH_LONG).show ();
                     hideProgressingView();
                 }else{
-                    String id = getVideoId( videiId.getText().toString() );
-                    getSuperHeroes( id );
+                    if(flag == 1){
+                        resultTextView.setText( " " );
+                        resultCommentTextView.setText( " " );
+                        flag = 0;
+                    }
+                    if(flag == 0) {
+                        String id = getVideoId( videiId.getText().toString() );
+                        getSuperHeroes( id );
+                    }
                 }
 
 
@@ -133,6 +148,7 @@ public class NotificationFragment extends Fragment {
 
 
         resultTextView = view.findViewById(R.id.result_text_view);
+        resultCommentTextView = view.findViewById( R.id.result_text_view_cmmnt );
         // inputEditText = findViewById(R.id.input_text);
         scrollView = view.findViewById(R.id.scroll_view);
 
@@ -170,14 +186,18 @@ public class NotificationFragment extends Fragment {
             public void onResponse(Call<Results> call, Response<Results> response) {
                 List<ItemsArray> myitemsList = response.body().getUserArray();
                 String commentssss = " ";
+                String textCommentsShow = "";
                 for (int i = 0; i < myitemsList.size(); i++) {
                     Snippet obj = myitemsList.get( i ).getSnippet();
                     TopComments comments = obj.getComment();
                     Snippetii snippetii = comments.getSnippetii();
                     String res = snippetii.getTextDisplay();
                     commentssss =commentssss+"\n"+ res;
+                    res = (i+1) + ". " + res;
+                    textCommentsShow = textCommentsShow + "\n" + res;
                 }
               classify(commentssss);
+                resultCommentTextView.append( textCommentsShow );
               //  hideProgressingView();
               //resultTextView.setText( commentssss );
 
@@ -255,6 +275,7 @@ public class NotificationFragment extends Fragment {
                 () -> {
                   // String textToShow = "Output:\n";
                     String textToShow = "\n";
+                    String textCommentsShow = "\n";
 
 
                     for (int i = 0; i < results.size(); i++) {
@@ -264,9 +285,9 @@ public class NotificationFragment extends Fragment {
 
 
                         if(result.getTitle().equals( "Positive" )){
-                            textToShow += String.format ("    %s: %.1f%%\n",  "Truth Percentage of Video ", result.getConfidence () * 100.0f);
+                            textToShow += String.format ("    %s: %.1f%%\n",  "Truth Probability of Video ", result.getConfidence () * 100.0f);
                         }else if(result.getTitle().equals("Negative")){
-                            textToShow += String.format ("     %s: %.1f%%\n", "False Percentage of Video ", result.getConfidence () * 100.0f );
+                            textToShow += String.format ("    %s: %.1f%%\n", "False Probability of Video ", result.getConfidence () * 100.0f );
                         }
                     }
 
@@ -276,10 +297,10 @@ public class NotificationFragment extends Fragment {
 
 
 
-                    Result result1 = results.get(0);
+                 //   Result result1 = results.get(0);
                     //textToShow += String.format("    %s: %s\n", result1.getTitle(), result1.getConfidence()*100);
 
-                    Result result2 = results.get(1);
+                //    Result result2 = results.get(1);
                     //textToShow += String.format("    %s: %s\n", result2.getTitle(), result2.getConfidence()*100) + "\n|n|n";
                   //  resultTextView.append(textToShow);
 
@@ -313,6 +334,11 @@ public class NotificationFragment extends Fragment {
  */
 
                     resultTextView.append (textToShow);
+                    flag = 1;
+                    headingToShow.setVisibility( View.VISIBLE );
+                    viewDivider.setVisibility( View.VISIBLE );
+                    // viewDividerBottom.setVisibility( View.VISIBLE );
+
 
 
                     // textToShow += "---------\n";
