@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     // fragment used for managing personal account section of user after registration
     private AccountFragment accountFragment;
 
+    private  String sharedText; // new
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,46 @@ public class MainActivity extends AppCompatActivity {
             accountFragment = new AccountFragment(); //  Fragment which will show user's personal profile.
 
             initializeFragment(); // Fragments are initialized.
+
+            // Get intent, action and MIME type
+            addPostBtn = findViewById(R.id.add_post_btn);
+            addPostBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent newPostIntent = new Intent(MainActivity.this,NewPostActivity.class);
+                    startActivity(newPostIntent);
+
+                }
+            });
+            Intent intent = getIntent();
+            String action = intent.getAction();
+            String type = intent.getType();
+
+
+            if (Intent.ACTION_SEND.equals(action) && type != null) {
+                if ("text/plain".equals(type)) {
+                    sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+                    if (sharedText != null) {
+                        mainbottomNav.setSelectedItemId (R.id.bottom_action_notif);
+                        addPostBtn.hide();
+                        replaceFragment(notificationFragment, getSupportFragmentManager().findFragmentById(R.id.main_container));
+
+
+//                        // Update UI to reflect text being shared
+//                        textBox.setText(sharedText);
+                    }
+
+                }
+            }
+
+
+
+
+
+
+
+
 
             // when bottom navigation items/ fragments will be tapped by the user and then , navigation item means fragment will be selected.
             // and corresponding id of the fragment will be received and corresponding fragments will be displayed on the screen.
@@ -133,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
+/*
             // this is the button for adding new posts
             addPostBtn = findViewById(R.id.add_post_btn);
             addPostBtn.setOnClickListener(new View.OnClickListener() {
@@ -146,12 +187,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+ */
+
         }
+
+
 
 
 
     }
 
+
+
+    public String getLink(){
+        return  sharedText;
+    }
 
     @Override
     protected void onStart() {

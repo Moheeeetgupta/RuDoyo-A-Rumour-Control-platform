@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_image"
+    android:background="@color/colorPrimary"
     tools:context=".SplashScreen">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_layer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="rudoyol.json"
+        app:lottie_loop="false" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

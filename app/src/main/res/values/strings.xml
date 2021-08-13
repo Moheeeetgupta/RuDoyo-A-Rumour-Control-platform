@@ -6,7 +6,7 @@
     <string name="login_to_doyo">Login to DoYo</string>
     <string name="todo1">TODO</string>
     <string name="account_settings">Account Settings...</string>
-    <string name="log_out">Log Out...</string>
+    <string name="log_out">Sign Out...</string>
     <string name="confirm_password">Confirm password</string>
     <string name="create_new_account">Create new account</string>
     <string name="Reg_password">Password...</string>
@@ -30,7 +30,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Username</string>
     <string name="blogpostdate">Blogpostdate</string>
-    <string name="this_is_my_first_post_on_doyo_the_world_s_largest_rumour_redressal_platform">This is my first post on doyo ,the world\'s largest rumour redressal platform</string>
+    <string name="this_is_my_first_post_on_doyo_the_world_s_largest_rumour_redressal_platform">This is my first post on RuDoyo ,the world\'s largest rumour redressal platform</string>
     <string name="todo2">TODO</string>
     <string name="todoblogpost">TODO</string>
     <string name="todo3">TODO</string>

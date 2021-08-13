@@ -24,10 +24,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+
             android:layout_weight="1"
 
             android:paddingEnd="60dp"
             app:srcCompat="@drawable/arrow_backk"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:paddingRight="60dp" />
 
         <TextView

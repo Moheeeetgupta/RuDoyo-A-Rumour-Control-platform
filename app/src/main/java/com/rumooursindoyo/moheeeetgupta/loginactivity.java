@@ -37,7 +37,7 @@ public class loginactivity extends AppCompatActivity {
     private ConstraintLayout main_layout;
     ViewGroup progressView;
     protected boolean isProgressShowing = false;
-    // private LinearLayout linearLayout;
+    private LinearLayout linearLayout;
 
     @Override
 
@@ -187,9 +187,9 @@ public class loginactivity extends AppCompatActivity {
         builder.setTitle( "Recover Password" );  // Uded to set title of AlertDialoge
         LinearLayout linearLayout = new LinearLayout( this ); // LinearLayout is used as parent view to show AlertDialoge.
         final EditText emailEt = new EditText( this ); // EditText to enter email address for password recovery
-        emailEt.setHint( "Enter registered email..." ); // setHint function is used to set Hint in the EditText so that user can unserstand what to enter in this field.
+        emailEt.setHint( "    Enter registered email..." ); // setHint function is used to set Hint in the EditText so that user can unserstand what to enter in this field.
         emailEt.setInputType( InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS );
-        emailEt.setMinEms( 10 );  // havve to add it
+        emailEt.setMinEms( 15 );  // havve to add it
         linearLayout.addView( emailEt ); // addView function is adding emailEt EdditText view to the linearlayout as child view.
         linearLayout.setPadding( 7, 10, 10, 10 );
         builder.setView( linearLayout ); // builder is setting linearlayout view as parent view for showing AlertDialoge
@@ -202,7 +202,13 @@ public class loginactivity extends AppCompatActivity {
             // and may have buttons that can be clicked.
             public void onClick(DialogInterface dialog, int which) {
                 String email = emailEt.getText().toString().trim(); // on clicking Recover Button , email from EditText is extracteed.
-                beginRecovery( email ); // function to start recovery of forgotten password
+
+                if(!TextUtils.isEmpty( email )){
+                    beginRecovery(email);    // function to start recovery of forgotten password
+                }else{
+                    Toast.makeText( loginactivity.this, "Please Enter Email Id", Toast.LENGTH_SHORT ).show();
+                }
+
 
             }
         } );

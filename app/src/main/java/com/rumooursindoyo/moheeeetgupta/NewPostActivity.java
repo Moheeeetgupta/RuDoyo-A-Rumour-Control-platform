@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,6 +59,9 @@ public class NewPostActivity extends AppCompatActivity {
 
     private String current_user_id;
 
+    ViewGroup progressView;
+    protected boolean isProgressShowing = false;
+
     private Bitmap compressedImageFile;
 
     @Override
@@ -80,7 +84,7 @@ public class NewPostActivity extends AppCompatActivity {
         newPostBtn = findViewById(R.id.post_btn);
 
         // remove
-       newPostProgress = findViewById(R.id.new_post_progress);
+       // newPostProgress = findViewById(R.id.new_post_progress);
 
         newPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,8 +108,10 @@ public class NewPostActivity extends AppCompatActivity {
                     Toast.makeText (NewPostActivity.this, "Description and image of the rumour is compulsory", Toast.LENGTH_SHORT).show ();
                 }else{
                 if(!TextUtils.isEmpty(desc) && postImageUri != null){
-                    finish ();
-                    newPostProgress.setVisibility(View.VISIBLE);
+                  //  finish ();
+                   // newPostProgress.setVisibility(View.VISIBLE);
+                    showProgressingView();
+
 
                     final String randomName = UUID.randomUUID().toString();
 
@@ -200,7 +206,8 @@ public class NewPostActivity extends AppCompatActivity {
 
                                                 }
 
-                                                newPostProgress.setVisibility(View.INVISIBLE);
+                                              //  newPostProgress.setVisibility(View.INVISIBLE);
+                                                hideProgressingView();
 
                                             }
                                         });
@@ -219,7 +226,8 @@ public class NewPostActivity extends AppCompatActivity {
 
                             } else {
                                 Toast.makeText (NewPostActivity.this, "Please give an image and description!", Toast.LENGTH_SHORT).show ();
-                                newPostProgress.setVisibility(View.INVISIBLE);
+                                //   newPostProgress.setVisibility(View.INVISIBLE);
+                                hideProgressingView();
 
                             }
 
@@ -254,5 +262,25 @@ public class NewPostActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public void showProgressingView() {
+
+        if (!isProgressShowing) {
+            isProgressShowing = true;
+            progressView = (ViewGroup) getLayoutInflater().inflate(R.layout.progressbar_layout, null);
+            View v = this.findViewById(android.R.id.content).getRootView();
+            ViewGroup viewGroup = (ViewGroup) v;
+            viewGroup.addView(progressView);
+        }
+    }
+
+    public void hideProgressingView() {
+        View v = this.findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView);
+        isProgressShowing = false;
+    }
+
 
 }
