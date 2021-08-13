@@ -56,7 +56,10 @@ public class AccountFragment extends Fragment {
 
     private EditText setupName;
     private Button setupBtn;
-    private ProgressBar setupProgress;
+   // private ProgressBar setupProgress;
+    ViewGroup progressView;
+    protected boolean isProgressShowing = false;
+
 
     private StorageReference storageReference;
     private FirebaseAuth firebaseAuth;
@@ -91,10 +94,12 @@ public class AccountFragment extends Fragment {
             setupImage =view.findViewById(R.id.setup_image);
             setupName = view.findViewById(R.id.Setup_name);
             setupBtn = view.findViewById(R.id.Setup_button);
-            setupProgress =view.findViewById(R.id.setup_progress);
+            //setupProgress =view.findViewById(R.id.setup_progress);
 
-            setupProgress.setVisibility(View.VISIBLE);
+            //setupProgress.setVisibility(View.VISIBLE);
+            hideProgressingView(); // new
             setupBtn.setEnabled(false);
+        setupBtn.setText ("Save new name"); // new
 
             firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot> () {
                 @Override
@@ -126,7 +131,8 @@ public class AccountFragment extends Fragment {
 
                     }
 
-                    setupProgress.setVisibility(View.INVISIBLE);
+                    //setupProgress.setVisibility(View.INVISIBLE);
+                    hideProgressingView();
                     setupBtn.setEnabled(true);
 
                 }
@@ -143,7 +149,8 @@ public class AccountFragment extends Fragment {
                     }else{
                         if (!TextUtils.isEmpty(user_name) && mainImageURI != null) {
 
-                            setupProgress.setVisibility (View.VISIBLE);
+                            // setupProgress.setVisibility (View.VISIBLE);
+                            showProgressingView();
 
                             if (isChanged) {
 
@@ -180,7 +187,8 @@ public class AccountFragment extends Fragment {
                                             String error = task.getException ().getMessage ();
                                             Toast.makeText (getActivity (), "(IMAGE Error) : " + error, Toast.LENGTH_LONG).show ();
 
-                                            setupProgress.setVisibility (View.INVISIBLE);
+                                          //  setupProgress.setVisibility (View.INVISIBLE);
+                                            hideProgressingView();
 
                                         }
                                     }
@@ -198,7 +206,7 @@ public class AccountFragment extends Fragment {
                 }
 
             });
-
+/*
             setupImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -225,6 +233,8 @@ public class AccountFragment extends Fragment {
                 }
 
             });
+
+ */
 
             return view;
 
@@ -268,7 +278,8 @@ public class AccountFragment extends Fragment {
 
                 }
 
-                setupProgress.setVisibility(View.INVISIBLE);
+               // setupProgress.setVisibility(View.INVISIBLE);
+                hideProgressingView();
 
             }
         });
@@ -305,5 +316,24 @@ public class AccountFragment extends Fragment {
             }
         }
 
+    }
+
+
+    public void showProgressingView() {
+
+        if (!isProgressShowing) {
+            isProgressShowing = true;
+            progressView = (ViewGroup) getLayoutInflater().inflate(R.layout.progressbar_layout, null);
+            View v = getActivity ().findViewById(android.R.id.content).getRootView();
+            ViewGroup viewGroup = (ViewGroup) v;
+            viewGroup.addView(progressView);
+        }
+    }
+
+    public void hideProgressingView() {
+        View v = getActivity ().findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView);
+        isProgressShowing = false;
     }
 }

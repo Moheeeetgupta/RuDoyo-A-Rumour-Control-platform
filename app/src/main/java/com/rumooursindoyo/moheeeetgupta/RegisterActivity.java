@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView reg_login_btn;
   // private ProgressBar reg_progress;
     private FirebaseAuth mAuth;
+    ImageView arrow_back_img;
 
 
     @Override
@@ -52,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         reg_confirm_pass_field= findViewById(R.id.Reg_cnfirm_pass);
         reg_btn = findViewById(R.id.Login_Btn);
         reg_login_btn= findViewById(R.id.Login_Reg_Btn);
+        arrow_back_img = findViewById( R.id.imageView );
         // reg_progress= findViewById(R.id.Regprogress);
 
         // if user is not new, then by clicking on this view , it will go on loginactivity.
@@ -62,6 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(regIntent);
             }
         });
+
+
+        arrow_back_img.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent regIntent = new Intent(RegisterActivity.this,loginactivity.class);
+                startActivity(regIntent);
+            }
+        } );
 
         // button for registration of new user.
         reg_btn.setOnClickListener(new View.OnClickListener() {

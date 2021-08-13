@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -49,14 +50,15 @@ public class SetupAcivity extends AppCompatActivity {
 
     private CircleImageView setupImage;
     private Uri mainImageURI = null;
-
+    ViewGroup progressView;
+    protected boolean isProgressShowing = false;
     private String user_id;
 
     private boolean isChanged = false;
 
     private EditText setupName;
     private Button setupBtn;
-    private ProgressBar setupProgress;
+  //  private ProgressBar setupProgress;
 
     /**
      * public class StorageReference extends Object.
@@ -106,9 +108,9 @@ public class SetupAcivity extends AppCompatActivity {
         setupImage = findViewById(R.id.setup_image); // image for setting up
         setupName = findViewById(R.id.Setup_name); // name for setting up
         setupBtn = findViewById(R.id.Setup_button); // button for setting up
-        setupProgress = findViewById(R.id.setup_progress); // progressbar for setting up
+    //    setupProgress = findViewById(R.id.setup_progress); // progressbar for setting up
 
-        setupProgress.setVisibility(View.VISIBLE); // making progressbar visible
+      //  setupProgress.setVisibility(View.VISIBLE); // making progressbar visible
         setupBtn.setEnabled(false); // disabling setUp button
 
         /**
@@ -149,7 +151,7 @@ public class SetupAcivity extends AppCompatActivity {
                         /**
                          * Glide Api will set up default image first with setDefaultRequestOptions to the setup activity and then will load image from " mainImageURI " into profile picture image view.
                          */
-                        Glide.with(SetupAcivity.this).setDefaultRequestOptions(placeholderRequest).load(mainImageURI).into(setupImage); // I have changed image to mainImageURI
+                        Glide.with(SetupAcivity.this).setDefaultRequestOptions(placeholderRequest).load(image).into(setupImage); // I have changed image to mainImageURI
 
 
                     }
@@ -162,7 +164,8 @@ public class SetupAcivity extends AppCompatActivity {
                 }
 
                 // progress bar will be invisible after finishing
-                setupProgress.setVisibility(View.INVISIBLE);
+              //  setupProgress.setVisibility(View.INVISIBLE);
+               // hideProgressingView();
 
                 // now setup button will be enabled now
                 setupBtn.setEnabled(true);
@@ -185,7 +188,8 @@ public class SetupAcivity extends AppCompatActivity {
                     if (!TextUtils.isEmpty(user_name) && mainImageURI != null) {
 
                         // progress bar will be visible.
-                        setupProgress.setVisibility (View.VISIBLE);
+                        showProgressingView();
+                       // setupProgress.setVisibility (View.VISIBLE);
 
                         //
                         if (isChanged) {
@@ -238,7 +242,9 @@ public class SetupAcivity extends AppCompatActivity {
                                         String error = task.getException ().getMessage ();
                                         Toast.makeText (SetupAcivity.this, "(IMAGE Error) : " + error, Toast.LENGTH_LONG).show ();
 
-                                        setupProgress.setVisibility (View.INVISIBLE);
+                                      //  setupProgress.setVisibility (View.INVISIBLE);
+                                        hideProgressingView();
+
 
                                     }
                                 }
@@ -328,7 +334,9 @@ public class SetupAcivity extends AppCompatActivity {
 
                 }
 
-                setupProgress.setVisibility(View.INVISIBLE);
+             //   setupProgress.setVisibility(View.INVISIBLE);
+                hideProgressingView();
+
 
             }
         });
@@ -371,5 +379,24 @@ public class SetupAcivity extends AppCompatActivity {
             }
         }
 
+    }
+
+
+    public void showProgressingView() {
+
+        if (!isProgressShowing) {
+            isProgressShowing = true;
+            progressView = (ViewGroup) getLayoutInflater().inflate(R.layout.progressbar_layout, null);
+            View v = this.findViewById(android.R.id.content).getRootView();
+            ViewGroup viewGroup = (ViewGroup) v;
+            viewGroup.addView(progressView);
+        }
+    }
+
+    public void hideProgressingView() {
+        View v = this.findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView);
+        isProgressShowing = false;
     }
 }

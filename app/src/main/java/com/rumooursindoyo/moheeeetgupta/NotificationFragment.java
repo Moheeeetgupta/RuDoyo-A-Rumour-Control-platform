@@ -42,6 +42,9 @@ public class NotificationFragment extends Fragment {
     private final static String expression = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
     EditText videiId;
 
+    ViewGroup progressView;
+    View view;
+    protected boolean isProgressShowing = false;
 
     private static final String TAG = "TextClassificationDemo";
 
@@ -51,6 +54,7 @@ public class NotificationFragment extends Fragment {
     // private EditText inputEditText;
     private Handler handler;
     private ScrollView scrollView;
+    private String sharedLink=null;
 
 
 
@@ -65,9 +69,13 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.tfe_tc_activity_main, container, false);
-
+        view = inflater.inflate(R.layout.tfe_tc_activity_main, container, false);
+        MainActivity mainActivity=(MainActivity)getActivity ();
+        sharedLink=mainActivity.getLink ();
         videiId = view.findViewById( R.id.ytid );
+        if(sharedLink!=null){
+            videiId.setText (sharedLink);
+        }
 
         Log.v(TAG, "onCreate");
 
@@ -79,9 +87,11 @@ public class NotificationFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
+                showProgressingView();
                 // checking if our editText field is empty or not.
                 if (videiId.getText().toString().isEmpty()) {
                     videiId.setError( "Please enter video link..." );
+                    hideProgressingView();
                     return;
                 }
 
@@ -100,10 +110,23 @@ public class NotificationFragment extends Fragment {
 
  */
 
+                if(isYoutubeUrl(videiId.getText ().toString ())==false){
+                    Toast.makeText(getActivity (),"Please Enter a valid youtube link...",Toast.LENGTH_LONG).show ();
+                    hideProgressingView();
+                }else{
+                    String id = getVideoId( videiId.getText().toString() );
+                    getSuperHeroes( id );
+                }
 
 
-                String id = getVideoId( videiId.getText().toString() );
-                getSuperHeroes( id );
+
+
+
+
+
+
+            //    String id = getVideoId( videiId.getText().toString() );
+            //    getSuperHeroes( id );
 
             }
         });
@@ -141,20 +164,22 @@ public class NotificationFragment extends Fragment {
 
 
     private void getSuperHeroes(String id) {
-        Call<Results> call = RetrofitClient.getInstance().getMyApi().getsuperHeroes("AIzaSyAbfxyKBnnSKsBho6k8C2OSFdJNk8NAy9w", "plainText", "snippet", 500, id);
+        Call<Results> call = RetrofitClient.getInstance().getMyApi().getsuperHeroes("AIzaSyAbfxyKBnnSKsBho6k8C2OSFdJNk8NAy9w", "plainText", "snippet", 10000, id);
         call.enqueue(new Callback<Results>() {
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
                 List<ItemsArray> myitemsList = response.body().getUserArray();
-                String commentssss = null;
+                String commentssss = " ";
                 for (int i = 0; i < myitemsList.size(); i++) {
                     Snippet obj = myitemsList.get( i ).getSnippet();
                     TopComments comments = obj.getComment();
                     Snippetii snippetii = comments.getSnippetii();
                     String res = snippetii.getTextDisplay();
-                    commentssss =commentssss+" "+ res;
+                    commentssss =commentssss+"\n"+ res;
                 }
-                classify(commentssss);
+              classify(commentssss);
+              //  hideProgressingView();
+              //resultTextView.setText( commentssss );
 
 
             }
@@ -168,6 +193,25 @@ public class NotificationFragment extends Fragment {
 
 
     }
+
+
+
+    public static boolean isYoutubeUrl(String youTubeURl)
+    {
+        boolean success;
+        String pattern = "^(http(s)?:\\/\\/)?((w){3}.)?youtu(be|.be)?(\\.com)?\\/.+";
+        if (!youTubeURl.isEmpty() && youTubeURl.matches(pattern))
+        {
+            success = true;
+        }
+        else
+        {
+            // Not Valid youtube URL
+            success = false;
+        }
+        return success;
+    }
+
 
 
     @Override
@@ -196,6 +240,7 @@ public class NotificationFragment extends Fragment {
                 () -> {
                     // Run text classification with TF Lite.
                     List<Result> results = client.classify(text);
+                    hideProgressingView();
 
                     // Show classification result on screen
                     showResult(text, results);
@@ -210,21 +255,64 @@ public class NotificationFragment extends Fragment {
                 () -> {
                   // String textToShow = "Output:\n";
                     String textToShow = "\n";
-                    /*
+
+
                     for (int i = 0; i < results.size(); i++) {
                         Result result = results.get(i);
-                        textToShow += String.format("    %s: %s\n", result.getTitle(), result.getConfidence()*100);
+                       // textToShow += String.format("    %s: %s\n", result.getTitle(), result.getConfidence()*100);
+                       //  textToShow  = textToShow + result.getTitle() + "   = " + result.getConfidence()*100 + "\n";
+
+
+                        if(result.getTitle().equals( "Positive" )){
+                            textToShow += String.format ("    %s: %.1f%%\n",  "Truth Percentage of Video ", result.getConfidence () * 100.0f);
+                        }else if(result.getTitle().equals("Negative")){
+                            textToShow += String.format ("     %s: %.1f%%\n", "False Percentage of Video ", result.getConfidence () * 100.0f );
+                        }
                     }
 
-                     */
+                 //   resultTextView.append (textToShow);
+
+
+
+
 
                     Result result1 = results.get(0);
-                    textToShow += String.format("    %s: %s\n", "Truth Percentage of Video ", result1.getConfidence()*100);
+                    //textToShow += String.format("    %s: %s\n", result1.getTitle(), result1.getConfidence()*100);
 
                     Result result2 = results.get(1);
-                    textToShow += String.format("    %s: %s\n", "False Percentage of Video ", result2.getConfidence()*100);
-                    resultTextView.append(textToShow);
+                    //textToShow += String.format("    %s: %s\n", result2.getTitle(), result2.getConfidence()*100) + "\n|n|n";
+                  //  resultTextView.append(textToShow);
 
+
+          //          if(result1.getTitle() == "Positive"){
+         //               textToShow += String.format ("    %s: %.1f%%\n",  "Truth Percentage of Video ", result1.getConfidence () * 100.0f);
+         //           }
+
+
+
+
+
+/*
+
+                    if(result1.getTitle ().equals( "Positive") && result2.getTitle ().equals("Negative")) {
+                        textToShow += String.format ("    %s: %.1f%%\n",  "Truth Percentage of Video ", result1.getConfidence () * 100.0f);
+
+
+                        textToShow += String.format ("     %s: %.1f%%\n", "False Percentage of Video ", result2.getConfidence () * 100.0f );
+                       // resultTextView.append (textToShow);
+                    }else {
+
+
+                        textToShow += String.format ("     %s: %.1f%%\n", "Truth Percentage of Video ", result2.getConfidence () * 100.0f);
+
+                        textToShow += String.format ("     %s: %.1f%%\n", "False Percentage of Video ", result1.getConfidence () * 100.0f);
+                        //resultTextView.append (textToShow);
+                    }
+
+
+ */
+
+                    resultTextView.append (textToShow);
 
 
                     // textToShow += "---------\n";
@@ -239,6 +327,27 @@ public class NotificationFragment extends Fragment {
                     // Scroll to the bottom to show latest entry's classification result.
                     scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
                 });
+    }
+
+
+
+
+    public void showProgressingView() {
+
+        if (!isProgressShowing) {
+            isProgressShowing = true;
+            progressView = (ViewGroup) getLayoutInflater().inflate(R.layout.progressbar_layout, null);
+            View v = getActivity ().findViewById(android.R.id.content).getRootView();
+            ViewGroup viewGroup = (ViewGroup) v;
+            viewGroup.addView(progressView);
+        }
+    }
+
+    public void hideProgressingView() {
+        View v = getActivity ().findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView);
+        isProgressShowing = false;
     }
 
 

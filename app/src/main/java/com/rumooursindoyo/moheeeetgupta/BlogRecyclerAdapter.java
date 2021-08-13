@@ -3,6 +3,8 @@ package com.rumooursindoyo.moheeeetgupta;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -53,6 +55,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     private Object QuerySnapshot;
     private boolean flagLike=false,flagDislike=false,flagNeutral=false;
 
+    private NetworkInfo networkInfo; // new
 
 
 
@@ -69,9 +72,16 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_list_item, parent, false);
         context = parent.getContext();
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                context.getSystemService (Context.CONNECTIVITY_SERVICE); // new
+
+        // Get details on the currently active default data network
+        networkInfo = connMgr.getActiveNetworkInfo();  // new
+
+
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-
 
 
         return new ViewHolder(view);
@@ -173,34 +183,39 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         holder.blogLikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            // If there is a network connection, fetch data
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Likes" ).document( currentUserId ).get().addOnCompleteListener( new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (!task.getResult().exists()) {
+                                if (flagNeutral == true) {
+                                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Confused" ).document( currentUserId ).delete();
+                                    flagNeutral = false;
+                                } else if (flagDislike == true) {
+                                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Unfavoured" ).document( currentUserId ).delete();
+                                    flagDislike = false;
+                                }
+                                Map<String, Object> likesMap = new HashMap<>();
+                                likesMap.put( "timestamp", FieldValue.serverTimestamp() );
 
-                        if(!task.getResult().exists()){
-                            if(flagNeutral==true){
-                                firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).delete();
-                                flagNeutral=false;
-                            }else if(flagDislike==true){
-                                firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).delete();
-                                flagDislike=false;
+                                firebaseFirestore.collection( "Posts/" + blogPostId + "/Likes" ).document( currentUserId ).set( likesMap );
+                                flagLike = true;
+                            } else {
+
+                                firebaseFirestore.collection( "Posts/" + blogPostId + "/Likes" ).document( currentUserId ).delete();
+                                flagLike = false;
                             }
-                            Map<String, Object> likesMap = new HashMap<>();
-                            likesMap.put("timestamp", FieldValue.serverTimestamp());
 
-                            firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).set(likesMap);
-                            flagLike=true;
-                        } else {
-
-                            firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).delete();
-                            flagLike=false;
                         }
-
-                    }
-                });
+                    } );
+                } else{
+                    Toast.makeText (context.getApplicationContext (), "PLease check your internet connection...",Toast.LENGTH_LONG).show ();
+                }
             }
         });
+
         //Get Unfavoured Count
 
 
@@ -259,32 +274,36 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         holder.unfavouredbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // If there is a network connection, fetch data
+                if (networkInfo != null && networkInfo.isConnected ()) {
+                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Unfavoured" ).document( currentUserId ).get().addOnCompleteListener( new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (!task.getResult().exists()) {
+                                if (flagNeutral == true) {
+                                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Confused" ).document( currentUserId ).delete();
+                                    flagNeutral = false;
+                                } else if (flagLike == true) {
+                                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Likes" ).document( currentUserId ).delete();
+                                    flagLike = false;
+                                }
+                                Map<String, Object> likesMap = new HashMap<>();
+                                likesMap.put( "timestamp", FieldValue.serverTimestamp() );
 
-                        if(!task.getResult().exists()){
-                            if(flagNeutral==true){
-                                firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).delete();
-                                flagNeutral=false;
-                            }else if(flagLike==true){
-                                firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).delete();
-                                flagLike=false;
+                                firebaseFirestore.collection( "Posts/" + blogPostId + "/Unfavoured" ).document( currentUserId ).set( likesMap );
+                                flagDislike = true;
+                            } else {
+
+                                firebaseFirestore.collection( "Posts/" + blogPostId + "/Unfavoured" ).document( currentUserId ).delete();
+                                flagDislike = false;
                             }
-                            Map<String, Object> likesMap = new HashMap<>();
-                            likesMap.put("timestamp", FieldValue.serverTimestamp());
 
-                            firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).set(likesMap);
-                            flagDislike=true;
-                        } else {
-
-                            firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).delete();
-                            flagDislike=false;
                         }
-
-                    }
-                });
+                    } );
+                }else {
+                    Toast.makeText (context.getApplicationContext (), "PLease check your internet connection...", Toast.LENGTH_LONG).show ();
+                }
             }
         });
         //Get Confused Count
@@ -341,32 +360,36 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         holder.confusedbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (networkInfo != null && networkInfo.isConnected ()) {
+                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Confused" ).document( currentUserId ).get().addOnCompleteListener( new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (!task.getResult().exists()) {
+                                if (flagLike == true) {
+                                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Likes" ).document( currentUserId ).delete();
+                                    flagLike = false;
+                                } else if (flagDislike == true) {
+                                    firebaseFirestore.collection( "Posts/" + blogPostId + "/Unfavoured" ).document( currentUserId ).delete();
+                                    flagDislike = false;
+                                }
+                                Map<String, Object> likesMap = new HashMap<>();
+                                likesMap.put( "timestamp", FieldValue.serverTimestamp() );
 
-                        if(!task.getResult().exists()){
-                            if(flagLike==true){
-                                firebaseFirestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).delete();
-                                flagLike=false;
-                            }else if(flagDislike==true){
-                                firebaseFirestore.collection("Posts/" + blogPostId + "/Unfavoured").document(currentUserId).delete();
-                                flagDislike=false;
+                                firebaseFirestore.collection( "Posts/" + blogPostId + "/Confused" ).document( currentUserId ).set( likesMap );
+                                flagNeutral = true;
+                            } else {
+
+                                firebaseFirestore.collection( "Posts/" + blogPostId + "/Confused" ).document( currentUserId ).delete();
+                                flagNeutral = false;
                             }
-                            Map<String, Object> likesMap = new HashMap<>();
-                            likesMap.put("timestamp", FieldValue.serverTimestamp());
 
-                            firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).set(likesMap);
-                            flagNeutral=true;
-                        } else {
-
-                            firebaseFirestore.collection("Posts/" + blogPostId + "/Confused").document(currentUserId).delete();
-                            flagNeutral=false;
                         }
-
-                    }
-                });
+                    } );
+                }
+                else {
+                    Toast.makeText (context.getApplicationContext (), "PLease check your internet connection...", Toast.LENGTH_LONG).show ();
+                }
             }
         });
 
