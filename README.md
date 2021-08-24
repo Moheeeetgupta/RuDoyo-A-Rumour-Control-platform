@@ -33,6 +33,7 @@ The android app lets you:
 - Crop and compress image before posting
 - upvote,downvote or be neutral on any rumour post.
 - Review any rumour
+- Report any malicious content and delete your own content.
 - Share any youtube video link to the app and predict its truth probabilty by the help of ML model
 
 ## Brief Process Flow 
