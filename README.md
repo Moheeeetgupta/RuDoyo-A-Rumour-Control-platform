@@ -4,7 +4,9 @@
 <img src="https://user-images.githubusercontent.com/57634381/128712843-b4f252b6-f6f8-4208-adf8-d0946e6966db.png" align="left"
 width="200" hspace="10" vspace="10">
 
-Rudoyo is an innovative android app powered by Machine Learning capabilities following the latest material design guidelines to solve one of the most pronounced problems of today's world,the rumours spread by images and videos and it represents a great combination of Team Work and coordination.
+Rudoyo is an innovative Android app powered by ML capabilities following the latest material design specs to solve one of the most pronounced problems of today's world, the Rumours spread by images and videos ,utilizing the great potential of Team work and the greatest team collaboration tools Git and Github🥳🥳
+
+
 
 RuDoYo is available on the Google Play Store.
 
