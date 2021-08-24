@@ -17,6 +17,11 @@
 package org.tensorflow.lite.examples.textclassification.client;
 
 /** An immutable result returned by a TextClassifier describing what was classified. */
+/**
+ * Comparable is interface present in java.lang package.
+ * It affects the original class, i.e., the actual class is modified.
+ * compareTo() method is natural comparison method of all the class which implements comparable.
+ */
 
 public class Result implements Comparable<Result> {
   /**
@@ -61,14 +66,17 @@ public class Result implements Comparable<Result> {
     }
 
     if (confidence != null) {
-      resultString += String.format("(%.1f%%) ", confidence * 100.0f);
+      resultString += String.format("(%.1f%%) ", confidence * 100.0f); // to compute confidence in percentage
     }
 
-    return resultString.trim();
+    return resultString.trim(); // trim()is a built-in function that eliminates leading and trailing spaces.
   }
 
   @Override
   public int compareTo(Result o) {
+
+    // Comparable provides compareTo() method to sort elements on the basis of confidence(truth or false percent) value.
+
     return o.confidence.compareTo(confidence);
   }
 }

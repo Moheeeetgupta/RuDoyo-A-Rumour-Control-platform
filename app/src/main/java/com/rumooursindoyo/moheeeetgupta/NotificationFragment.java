@@ -36,6 +36,10 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * A Fragment represents a reusable portion of your app's UI. A fragment defines and manages its own layout,
+ * has its own lifecycle, and can handle its own input events. Fragments cannot live on their own;
+ * they must be hosted by an activity or another fragment. The fragment’s view hierarchy becomes part of, or attaches to, the host’s view hierarchy.
  */
 public class NotificationFragment extends Fragment {
 
@@ -55,9 +59,15 @@ public class NotificationFragment extends Fragment {
     private TextView resultCommentTextView;
     private TextView headingToShow;
     private View viewDivider;
-  //  private View viewDividerBottom;
-    // private EditText inputEditText;
     private Handler handler;
+
+    /*
+    A Handler allows communicating back with UI thread from other background thread.
+    This is useful in android as android doesn’t allow other threads to communicate directly with UI thread.
+    A Handler allows you to send and process Message and Runnable objects associated with a thread’s MessageQueue.
+    Each Handler instance is associated with a single thread and that thread’s message queue.
+     */
+
     private ScrollView scrollView;
     private String sharedLink=null;
 
@@ -71,6 +81,9 @@ public class NotificationFragment extends Fragment {
 
 
     @Override
+     /*
+    onCreateView() is called by Android once the Fragment should inflate a view.
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -90,7 +103,14 @@ public class NotificationFragment extends Fragment {
 
         client = new TextClassificationClient(((AppCompatActivity)getActivity()).getApplicationContext());
         handler = new Handler();
+
+        //Button to predict the truth and false probability of youtube link.
         Button classifyButton = view.findViewById(R.id.button);
+
+        /*
+        setOnClickListener method helps us to link a listener with certain attributes.
+        setOnClickListener is a method in Android basically used with buttons, image buttons etc.
+         */
         classifyButton.setOnClickListener( new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -103,20 +123,8 @@ public class NotificationFragment extends Fragment {
                     return;
                 }
 
-                // if listView will be shown then, below code will be used to hide actionbar
-                //    if (getSupportActionBar() != null) {
-                //        getSupportActionBar().hide();
-                //    }
-/*
-                if(urlFromActivity != null){
-                    String id = getVideoId( videiId.getText().toString() );
-                    getSuperHeroes( id );
-                }else{
-                    String id = getVideoId(urlFromActivity);
-                    getSuperHeroes( id );
-                }
 
- */
+
 
                 if(isYoutubeUrl(videiId.getText ().toString ())==false){
                     Toast.makeText(getActivity (),"Please Enter a valid youtube link...",Toast.LENGTH_LONG).show ();
@@ -129,19 +137,15 @@ public class NotificationFragment extends Fragment {
                     }
                     if(flag == 0) {
                         String id = getVideoId( videiId.getText().toString() );
+                        /*
+                        getSuperHeroes takes youtube video id  as input and fetches comments(<= 500) on that particular video id
+                        and append them as paragraph which further given as input to classify method.
+                        */
                         getSuperHeroes( id );
                     }
                 }
 
 
-
-
-
-
-
-
-            //    String id = getVideoId( videiId.getText().toString() );
-            //    getSuperHeroes( id );
 
             }
         });
@@ -234,6 +238,22 @@ public class NotificationFragment extends Fragment {
 
 
 
+    /*
+    onStart() When activity start getting visible to user then onStart() will be called.
+    This calls just after the onCreate() at first time launch of activity. When activity launch,
+    first onCreate() method call then onStart() and then onResume(). If the activity is in onPause() condition i.e. not visible to user.
+     */
+
+
+    /*
+    Lambda Parameters are parameters to the lambda function passed within opening parenthesis "(" and closing parenthesis ")".
+    When more than one parameter is passed, they are separated by commas. To support lambdas,
+    Java has introduced a new operator “->”, also known as lambda operator or arrow operator
+
+    The left side specifies the parameters required by the expression, which could also be empty if no parameters are required.
+    The right side is the lambda body which specifies the actions of the lambda expression.
+    */
+
     @Override
     public void onStart() {
         super.onStart();
@@ -243,6 +263,13 @@ public class NotificationFragment extends Fragment {
                     client.load();
                 });
     }
+
+
+    /*
+    When Activity is in background then onPause() method will execute. After a millisecond of that method next
+    onStop() method will execute. Means here also Activity is not visible to user when onStop() executed.
+    We will use onStop() method to stop Api calls etc.
+     */
 
     @Override
     public void onStop() {
@@ -273,7 +300,7 @@ public class NotificationFragment extends Fragment {
         // Run on UI thread as we'll updating our app UI
         getActivity().runOnUiThread(
                 () -> {
-                  // String textToShow = "Output:\n";
+
                     String textToShow = "\n";
                     String textCommentsShow = "\n";
 
@@ -291,47 +318,10 @@ public class NotificationFragment extends Fragment {
                         }
                     }
 
-                 //   resultTextView.append (textToShow);
 
 
 
 
-
-                 //   Result result1 = results.get(0);
-                    //textToShow += String.format("    %s: %s\n", result1.getTitle(), result1.getConfidence()*100);
-
-                //    Result result2 = results.get(1);
-                    //textToShow += String.format("    %s: %s\n", result2.getTitle(), result2.getConfidence()*100) + "\n|n|n";
-                  //  resultTextView.append(textToShow);
-
-
-          //          if(result1.getTitle() == "Positive"){
-         //               textToShow += String.format ("    %s: %.1f%%\n",  "Truth Percentage of Video ", result1.getConfidence () * 100.0f);
-         //           }
-
-
-
-
-
-/*
-
-                    if(result1.getTitle ().equals( "Positive") && result2.getTitle ().equals("Negative")) {
-                        textToShow += String.format ("    %s: %.1f%%\n",  "Truth Percentage of Video ", result1.getConfidence () * 100.0f);
-
-
-                        textToShow += String.format ("     %s: %.1f%%\n", "False Percentage of Video ", result2.getConfidence () * 100.0f );
-                       // resultTextView.append (textToShow);
-                    }else {
-
-
-                        textToShow += String.format ("     %s: %.1f%%\n", "Truth Percentage of Video ", result2.getConfidence () * 100.0f);
-
-                        textToShow += String.format ("     %s: %.1f%%\n", "False Percentage of Video ", result1.getConfidence () * 100.0f);
-                        //resultTextView.append (textToShow);
-                    }
-
-
- */
 
                     resultTextView.append (textToShow);
                     flag = 1;
@@ -341,7 +331,6 @@ public class NotificationFragment extends Fragment {
 
 
 
-                    // textToShow += "---------\n";
 
                     // Append the result to the UI.
                    // resultTextView.append(textToShow);
